@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Practice from "./pages/Practice";
 import { Ionicons } from "@expo/vector-icons";
-import { settings } from "./settings";
+import { settings } from "./setting/setting";
 
 const Tab = createBottomTabNavigator();
 
