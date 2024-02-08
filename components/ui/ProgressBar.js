@@ -1,5 +1,5 @@
 import { Text, View, Image, ScrollView, StyleSheet } from "react-native";
-import { settings } from "../setting/setting";
+import { settings } from "../../setting/setting";
 
 export function ProgressBar({ value }) {
   return (

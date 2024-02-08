@@ -6,7 +6,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import { settings } from "./setting/setting";
 import PracticeStack from "./pages/Practice/PracticeStack";
-
+import HomePage from "./pages/HomePage/HomePage";
 
 const Tab = createBottomTabNavigator();
 
@@ -22,7 +22,7 @@ const navData = [
   {
     name: "Trang chủ",
     iconName: "home",
-    component: HomeScreen,
+    component: HomePage,
   },
   {
     name: "Bài tập",
@@ -58,7 +58,9 @@ function App() {
               name={nav.name}
               component={nav.component}
               options={({ route, navigation }) => ({
-                headerShown: route.name === "Bài tập" ? false : true,
+                headerShown: ["Trang chủ", "Bài tập"].includes(route.name)
+                  ? false
+                  : true,
                 tabBarLabel: nav.name,
                 tabBarIcon: ({ color, size, focused }) => (
                   <Ionicons

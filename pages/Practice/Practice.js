@@ -6,7 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-import { ProgressBar } from "../../components/component";
+import { ProgressBar } from "../../components/ui/ProgressBar";
 import { FlatList } from "react-native-gesture-handler";
 
 const data = [
