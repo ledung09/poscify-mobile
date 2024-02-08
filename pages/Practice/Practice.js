@@ -1,5 +1,12 @@
-import { Text, View, Image, ScrollView, StyleSheet } from "react-native";
-import { ProgressBar } from "../components/component";
+import {
+  Text,
+  View,
+  Image,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
+import { ProgressBar } from "../../components/component";
 import { FlatList } from "react-native-gesture-handler";
 
 const data = [
@@ -47,7 +54,7 @@ const data = [
   },
 ];
 
-export default function Practice() {
+export default function Practice({ navigation }) {
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.pageTitle}>Practice section</Text>
@@ -55,7 +62,10 @@ export default function Practice() {
         data={data}
         renderItem={({ item }) => {
           return (
-            <View style={styles.section}>
+            <TouchableOpacity
+              style={styles.section}
+              onPress={() => navigation.navigate("Exercise")}
+            >
               <Image
                 style={styles.image}
                 source={{
@@ -67,7 +77,7 @@ export default function Practice() {
                 <Text style={styles.sectionDes}>{item.des}</Text>
                 <ProgressBar value={item.percent} />
               </View>
-            </View>
+            </TouchableOpacity>
           );
         }}
       />

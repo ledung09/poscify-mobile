@@ -1,11 +1,12 @@
 import * as React from "react";
 import { View, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Practice from "./pages/Practice";
 import { Ionicons } from "@expo/vector-icons";
 import { settings } from "./setting/setting";
+import PracticeStack from "./pages/Practice/PracticeStack";
+
 
 const Tab = createBottomTabNavigator();
 
@@ -17,8 +18,6 @@ function HomeScreen() {
   );
 }
 
-const Stack = createNativeStackNavigator();
-
 const navData = [
   {
     name: "Trang chủ",
@@ -28,7 +27,7 @@ const navData = [
   {
     name: "Bài tập",
     iconName: "body",
-    component: Practice,
+    component: PracticeStack,
   },
   {
     name: "Lịch sử",
@@ -45,7 +44,13 @@ const navData = [
 function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator
+        screenOptions={{
+          headerTitleAlign: "center",
+          tabBarActiveTintColor: settings.color.primary,
+          tabBarInactiveTintColor: settings.color.gray,
+        }}
+      >
         {navData.map((nav, idx) => {
           return (
             <Tab.Screen
@@ -53,10 +58,7 @@ function App() {
               name={nav.name}
               component={nav.component}
               options={({ route, navigation }) => ({
-                headerTitleAlign: "center",
-                // headerShown: false,
-                tabBarActiveTintColor: settings.color.primary,
-                tabBarInactiveTintColor: settings.color.gray,
+                headerShown: route.name === "Bài tập" ? false : true,
                 tabBarLabel: nav.name,
                 tabBarIcon: ({ color, size, focused }) => (
                   <Ionicons
