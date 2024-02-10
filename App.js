@@ -1,5 +1,6 @@
 import * as React from "react";
 import { View, Text } from "react-native";
+import 'react-native-gesture-handler';
 import { NavigationContainer } from "@react-navigation/native";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -7,6 +8,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { settings } from "./setting/setting";
 import PracticeStack from "./pages/Practice/PracticeStack";
 import HomePage from "./pages/HomePage/HomePage";
+import Stats from "./pages/Stats/Stats";
+
 
 const Tab = createBottomTabNavigator();
 
@@ -37,7 +40,7 @@ const navData = [
   {
     name: "Số liệu",
     iconName: "stats-chart",
-    component: HomeScreen,
+    component: Stats,
   },
 ];
 
