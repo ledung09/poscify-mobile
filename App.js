@@ -9,6 +9,7 @@ import { settings } from "./setting/setting";
 import PracticeStack from "./pages/Practice/PracticeStack";
 import HomePage from "./pages/HomePage/HomePage";
 import Stats from "./pages/Stats/Stats";
+import Analyze from "./pages/Analyze/Analyze";
 
 
 const Tab = createBottomTabNavigator();
@@ -35,7 +36,7 @@ const navData = [
   {
     name: "Lịch sử",
     iconName: "reload",
-    component: HomeScreen,
+    component: Analyze,
   },
   {
     name: "Số liệu",
