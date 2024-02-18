@@ -15,6 +15,44 @@ import {
   VictoryLine,
 } from "victory-native";
 import { settings } from "../../setting/setting";
+import { seatDataMapping } from "../../util/util";
+import { useNavigation } from "@react-navigation/native";
+
+const data = [
+  { id: 0, status: "high" },
+  { id: 1, status: "low" },
+  { id: 2, status: "medium" },
+  { id: 3, status: "high" },
+  { id: 4, status: "medium" },
+  { id: 5, status: "low" },
+  { id: 6, status: "high" },
+  { id: 7, status: "low" },
+  { id: 8, status: "medium" },
+  { id: 9, status: "high" },
+  { id: 10, status: "low" },
+  { id: 11, status: "low" },
+  { id: 12, status: "medium" },
+  { id: 13, status: "high" },
+  { id: 14, status: "medium" },
+  { id: 15, status: "low" },
+  { id: 16, status: "high" },
+  { id: 17, status: "low" },
+  { id: 18, status: "medium" },
+  { id: 19, status: "high" },
+  { id: 20, status: "low" },
+  { id: 21, status: "low" },
+  { id: 22, status: "medium" },
+  { id: 23, status: "high" },
+  { id: 24, status: "medium" },
+  { id: 25, status: "low" },
+  { id: 26, status: "high" },
+  { id: 27, status: "low" },
+  { id: 28, status: "medium" },
+  { id: 29, status: "high" },
+  { id: 30, status: "low" },
+  { id: 31, status: "high" },
+  { id: 32, status: "medium" },
+];
 
 export default function Stats() {
   const [screenAngle, setScreenAngle] = React.useState(
@@ -26,6 +64,8 @@ export default function Stats() {
       setScreenAngle(e.target.angle);
     });
   }, []);
+
+  const { navigate } = useNavigation();
 
   return (
     <View style={styles.container}>
@@ -49,37 +89,56 @@ export default function Stats() {
 
       {screenAngle === 90 && (
         <View style={styles.diagramWrapper}>
-          <View style={styles.diagramRow}>
-            <View style={styles.rowItem}>A</View>
-            <View style={styles.subRow}>
-              <View style={styles.seatItem}>1</View>
-              <View style={styles.seatItem}>1</View>
-            </View>
+          {seatDataMapping(data) &&
+            seatDataMapping(data).map((row, idx1) => {
+              return (
+                <View style={styles.diagramRow} key={idx1}>
+                  <View style={styles.rowItem}>
+                    <Text style={styles.rowText}>
+                      {String.fromCharCode(idx1 + 65)}
+                    </Text>
+                  </View>
 
-            <View style={styles.subRow}>
-              <View style={styles.seatItem}>1</View>
-              <View style={styles.seatItem}>1</View>
-            </View>
-
-            <View style={styles.subRow}>
-              <View style={styles.seatItem}>1</View>
-              <View style={styles.seatItem}>1</View>
-            </View>
-
-            <View style={styles.subRow}>
-              <View style={styles.seatItem}>1</View>
-              <View style={styles.seatItem}>1</View>
-            </View>
-          </View>
-          <View>
-            <View style={styles.rowItem}>A</View>
-          </View>
-          <View>
-            <View style={styles.rowItem}>A</View>
-          </View>
-          <View>
-            <View style={styles.rowItem}>A</View>
-          </View>
+                  {row &&
+                    row.map((pair, idx2) => {
+                      return (
+                        <View style={styles.subRow} key={idx2}>
+                          {pair &&
+                            pair.map((item, idx3) => {
+                              return (
+                                <TouchableOpacity
+                                  onPress={() => {
+                                    navigate("Student Statistic", {
+                                      id: item.id,
+                                    });
+                                  }}
+                                  key={idx3}
+                                  style={[
+                                    styles.seatItem,
+                                    {
+                                      backgroundColor:
+                                        item.status === "low"
+                                          ? settings.color.classDiagram.low
+                                          : item.status === "medium"
+                                          ? settings.color.classDiagram.medium
+                                          : settings.color.classDiagram.high,
+                                    },
+                                  ]}
+                                >
+                                  <Text style={styles.seatText}>
+                                    {(item.id + 1) % 8 === 0
+                                      ? 8
+                                      : (item.id + 1) % 8}
+                                  </Text>
+                                </TouchableOpacity>
+                              );
+                            })}
+                        </View>
+                      );
+                    })}
+                </View>
+              );
+            })}
         </View>
       )}
     </View>
@@ -123,16 +182,18 @@ const styles = StyleSheet.create({
   },
   rowItem: {
     backgroundColor: "rgb(190 203 222);",
-    borderRadius: "5px",
+    borderRadius: "8px",
     width: "34px",
     height: "60px",
-    color: "white",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+  },
+  rowText: {
     fontSize: "22px",
     fontWeight: 500,
     fontFamily: "sans-serif",
+    color: "white",
   },
   seatItem: {
     width: "60px",
@@ -143,8 +204,14 @@ const styles = StyleSheet.create({
     fontSize: "24px",
     fontWeight: 500,
     color: "white",
-    borderRadius: "5px",
+    borderRadius: "8px",
     backgroundColor: settings.color.classDiagram.low,
+    fontFamily: "sans-serif",
+  },
+  seatText: {
+    fontSize: "24px",
+    fontWeight: 500,
+    color: "white",
     fontFamily: "sans-serif",
   },
 });

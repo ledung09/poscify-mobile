@@ -11,6 +11,7 @@ import PracticeStack from "./pages/Practice/PracticeStack";
 import HomePage from "./pages/HomePage/HomePage";
 import Stats from "./pages/Stats/Stats";
 import Analyze from "./pages/Analyze/Analyze";
+import StatsStack from "./pages/Stats/StatsStack";
 
 const Tab = createBottomTabNavigator();
 
@@ -41,13 +42,11 @@ const navData = [
   {
     name: "Số liệu",
     iconName: "stats-chart",
-    component: Stats,
+    component: StatsStack,
   },
 ];
 
 function App() {
-  console.log(window.screen.orientation);
-
   return (
     <NavigationContainer>
       <Tab.Navigator
