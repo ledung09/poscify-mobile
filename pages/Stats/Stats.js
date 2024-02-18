@@ -1,3 +1,5 @@
+import React from "react";
+
 import {
   Text,
   View,
@@ -12,47 +14,137 @@ import {
   VictoryTheme,
   VictoryLine,
 } from "victory-native";
+import { settings } from "../../setting/setting";
 
 export default function Stats() {
+  const [screenAngle, setScreenAngle] = React.useState(
+    screen.orientation.angle
+  );
+
+  React.useEffect(() => {
+    screen.orientation.addEventListener("change", (e) => {
+      setScreenAngle(e.target.angle);
+    });
+  }, []);
+
   return (
-    <ScrollView style={styles.container}>
-      <VictoryChart theme={VictoryTheme.material}>
-        <VictoryLine
-          style={{
-            data: { stroke: "#c43a31" },
-            parent: { border: "1px solid #ccc" },
-          }}
-          data={[
-            { x: 1, y: 2 },
-            { x: 2, y: 3 },
-            { x: 3, y: 5 },
-            { x: 4, y: 4 },
-            { x: 5, y: 7 },
-          ]}
-        />
-      </VictoryChart>
-      <VictoryChart theme={VictoryTheme.material} domainPadding={{ x: 20 }}>
-        <VictoryBar
-          // barWidth={({ index }) => index * 2 + 8}
-          style={{
-            data: { fill: "#c43a31" },
-          }}
-          data={[
-            { x: 1, y: 2, y0: 0 },
-            { x: 2, y: 3, y0: 0 },
-            { x: 3, y: 5, y0: 0 },
-            { x: 4, y: 4, y0: 0 },
-            { x: 5, y: 6, y0: 0 },
-          ]}
-        />
-      </VictoryChart>
-    </ScrollView>
+    <View style={styles.container}>
+      {screenAngle === 0 && (
+        <>
+          <View style={styles.rotateWrapper}>
+            <Image
+              source={{
+                uri: "https://cdn.dribbble.com/users/3570301/screenshots/6457895/rotate-your-screen-animation-_black_.gif",
+              }}
+              style={{
+                width: "550px",
+                height: "250px",
+                objectFit: "contain",
+              }}
+            />
+            <Text style={styles.rotateText}>Please rotate your phone!</Text>
+          </View>
+        </>
+      )}
+
+      {screenAngle === 90 && (
+        <View style={styles.diagramWrapper}>
+          <View style={styles.diagramRow}>
+            <View style={styles.rowItem}>A</View>
+            <View style={styles.subRow}>
+              <View style={styles.seatItem}>1</View>
+              <View style={styles.seatItem}>1</View>
+            </View>
+
+            <View style={styles.subRow}>
+              <View style={styles.seatItem}>1</View>
+              <View style={styles.seatItem}>1</View>
+            </View>
+
+            <View style={styles.subRow}>
+              <View style={styles.seatItem}>1</View>
+              <View style={styles.seatItem}>1</View>
+            </View>
+
+            <View style={styles.subRow}>
+              <View style={styles.seatItem}>1</View>
+              <View style={styles.seatItem}>1</View>
+            </View>
+          </View>
+          <View>
+            <View style={styles.rowItem}>A</View>
+          </View>
+          <View>
+            <View style={styles.rowItem}>A</View>
+          </View>
+          <View>
+            <View style={styles.rowItem}>A</View>
+          </View>
+        </View>
+      )}
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#f5fcff",
+    height: "100%",
+    backgroundColor: "white",
+    paddingVertical: "25px",
+    paddingHorizontal: "30px",
+  },
+  diagramWrapper: {
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+  },
+  rotateWrapper: {
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "20px",
+  },
+  rotateText: {
+    fontSize: "25px",
+    fontWeight: 600,
+  },
+  diagramRow: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  subRow: {
+    display: "flex",
+    flexDirection: "row",
+    gap: "4px",
+  },
+  rowItem: {
+    backgroundColor: "rgb(190 203 222);",
+    borderRadius: "5px",
+    width: "34px",
+    height: "60px",
+    color: "white",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    fontSize: "22px",
+    fontWeight: 500,
+    fontFamily: "sans-serif",
+  },
+  seatItem: {
+    width: "60px",
+    height: "60px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: "24px",
+    fontWeight: 500,
+    color: "white",
+    borderRadius: "5px",
+    backgroundColor: settings.color.classDiagram.low,
+    fontFamily: "sans-serif",
   },
 });

@@ -1,6 +1,7 @@
 import * as React from "react";
-import { View, Text } from "react-native";
-import 'react-native-gesture-handler';
+
+import { View, Text, Button } from "react-native";
+import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -10,7 +11,6 @@ import PracticeStack from "./pages/Practice/PracticeStack";
 import HomePage from "./pages/HomePage/HomePage";
 import Stats from "./pages/Stats/Stats";
 import Analyze from "./pages/Analyze/Analyze";
-
 
 const Tab = createBottomTabNavigator();
 
@@ -46,6 +46,8 @@ const navData = [
 ];
 
 function App() {
+  console.log(window.screen.orientation);
+
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -62,7 +64,9 @@ function App() {
               name={nav.name}
               component={nav.component}
               options={({ route, navigation }) => ({
-                headerShown: ["Trang chủ", "Bài tập"].includes(route.name)
+                headerShown: ["Trang chủ", "Bài tập", "Số liệu"].includes(
+                  route.name
+                )
                   ? false
                   : true,
                 tabBarLabel: nav.name,

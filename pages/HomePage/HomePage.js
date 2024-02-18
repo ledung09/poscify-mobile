@@ -1,10 +1,10 @@
-import { Text, View, StyleSheet, Image } from "react-native";
+import { Text, View, StyleSheet, Image, ScrollView } from "react-native";
 import { settings } from "../../setting/setting";
 import { Button } from "../../components/ui/Button";
 
 export default function HomePage() {
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.wrapper}>
         <Image
           source={{
@@ -22,13 +22,16 @@ export default function HomePage() {
         </Text>
         <Button iconName="cloud-upload" text="Đăng tải video của bạn" />
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    height: "100%",
+    // height: "100%",
+    paddingVertical: "20px",
+    flexGrow: 1,
+    justifyContent: "center",
     backgroundColor: "white",
   },
   wrapper: {
