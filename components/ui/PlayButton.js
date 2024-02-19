@@ -20,7 +20,7 @@ export function PlayButton({ id }) {
         navigate("Exercise", { id: id });
       }}
     >
-      <Ionicons name="play" color="white" size={20} style={{ marginLeft: 3 }} />
+      <Ionicons name="play" color="white" size={16} style={{ marginLeft: 3 }} />
     </TouchableOpacity>
   );
 }
@@ -30,8 +30,8 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    width: 45,
-    height: 45,
+    width: 40,
+    height: 40,
     borderRadius: "50%",
     backgroundColor: settings.color.primary,
   },

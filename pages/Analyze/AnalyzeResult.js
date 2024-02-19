@@ -9,7 +9,7 @@ import {
 
 import PercentCircle from "../../components/ui/PercentCircle";
 
-export default function Analyze() {
+export default function AnalyzeResult() {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.wrapper}>

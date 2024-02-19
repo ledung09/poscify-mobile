@@ -8,11 +8,10 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import { settings } from "./setting/setting";
 import PracticeStack from "./pages/Practice/PracticeStack";
-import HomePage from "./pages/HomePage/HomePage";
-import Stats from "./pages/Stats/Stats";
-import Analyze from "./pages/Analyze/Analyze";
 import StatsStack from "./pages/Stats/StatsStack";
 import Home from "./pages/Home/Home";
+import AnalyzeStack from "./pages/Analyze/AnalyzeStack";
+import Setting from "./pages/Setting/Setting";
 
 const Tab = createBottomTabNavigator();
 
@@ -26,29 +25,34 @@ function HomeScreen() {
 
 const navData = [
   {
-    name: "Trang chủ",
+    name: "Home",
+    headerText: "Trang chủ",
     iconName: "home",
     component: Home,
   },
   {
-    name: "Phân tích",
-    iconName: "analyze",
-    component: HomePage,
+    name: "Analyze",
+    headerText: "Thống kê",
+    iconName: "analytics",
+    component: AnalyzeStack,
   },
   {
-    name: "Bài tập",
+    name: "Exercise",
+    headerText: "Bài tập",
     iconName: "body",
     component: PracticeStack,
   },
   {
-    name: "Lịch sử",
-    iconName: "reload",
-    component: Analyze,
-  },
-  {
-    name: "Số liệu",
+    name: "Statistic",
+    headerText: "Thống kê",
     iconName: "stats-chart",
     component: StatsStack,
+  },
+  {
+    name: "Setting",
+    headerText: "Cài đặt",
+    iconName: "person-circle",
+    component: Setting,
   },
 ];
 
@@ -57,6 +61,8 @@ function App() {
     <NavigationContainer>
       <Tab.Navigator
         screenOptions={{
+          // tabBarShowLabel: false,
+          headerShown: false,
           headerTitleAlign: "center",
           tabBarActiveTintColor: settings.color.primary,
           tabBarInactiveTintColor: settings.color.gray,
@@ -69,12 +75,12 @@ function App() {
               name={nav.name}
               component={nav.component}
               options={({ route, navigation }) => ({
-                headerShown: ["Trang chủ", "Bài tập", "Số liệu"].includes(
-                  route.name
-                )
-                  ? false
-                  : true,
-                tabBarLabel: nav.name,
+                // headerShown: ["Home", "Analyze", "Exercise", "Statistic"].includes(
+                //   route.name
+                // )
+                //   ? false
+                //   : true,
+                tabBarLabel: nav.headerText,
                 tabBarIcon: ({ color, size, focused }) => (
                   <Ionicons
                     name={

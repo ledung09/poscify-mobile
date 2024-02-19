@@ -9,10 +9,9 @@ import {
 import { settings } from "../../setting/setting";
 import { Ionicons } from "@expo/vector-icons";
 
-export function Button(props) {
-  const { iconName, text } = props;
+export function Button({ iconName, text, ...props }) {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} {...props}>
       {iconName && (
         <Ionicons name={iconName} size={18} style={{ height: 15 }} />
       )}

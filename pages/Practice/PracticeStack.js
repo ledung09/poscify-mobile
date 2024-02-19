@@ -11,7 +11,9 @@ export default function PracticeStack() {
       <Stack.Screen
         name="Practice"
         component={Practice}
-        options={({ route, navigation }) => ({})}
+        options={({ route, navigation }) => ({
+          headerShown: false,
+        })}
       />
       <Stack.Screen
         name="Exercise"

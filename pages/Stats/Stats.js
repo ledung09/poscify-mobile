@@ -82,7 +82,7 @@ export default function Stats() {
                 objectFit: "contain",
               }}
             />
-            <Text style={styles.rotateText}>Please rotate your phone!</Text>
+            <Text style={styles.rotateText}>Vui lòng xoay điện thoại!</Text>
           </View>
         </>
       )}

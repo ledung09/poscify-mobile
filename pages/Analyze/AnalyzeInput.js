@@ -1,8 +1,11 @@
-import { Text, View, StyleSheet, Image, ScrollView } from "react-native";
+import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity } from "react-native";
 import { settings } from "../../setting/setting";
 import { Button } from "../../components/ui/Button";
+import { useNavigation } from "@react-navigation/native";
 
-export default function HomePage() {
+export default function AnalyzeInput() {
+  const { navigate } = useNavigation()
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.wrapper}>
@@ -20,7 +23,9 @@ export default function HomePage() {
         <Text style={styles.description}>
           Hãy cho chúng tôi phân tích dáng ngồi của con bạn!
         </Text>
-        <Button iconName="cloud-upload" text="Đăng tải video của bạn" />
+        <Button onPress={() => {
+          navigate("AnalyzeResult", {})
+        }} iconName="cloud-upload" text="Đăng tải video của bạn"  />
       </View>
     </ScrollView>
   );

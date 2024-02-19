@@ -12,42 +12,42 @@ import { PlayButton } from "../../components/ui/PlayButton";
 
 const data = [
   {
-    id: 0, 
+    id: 0,
     image: "https://cdn.mos.cms.futurecdn.net/9ghCpUY6JaLtStkZkeH73T.jpg",
     title: "Push up",
     des: "100 Push up a day",
     percent: 45,
   },
   {
-    id: 1, 
+    id: 1,
     image: "https://cdn.mos.cms.futurecdn.net/9ghCpUY6JaLtStkZkeH73T.jpg",
     title: "Push up",
     des: "100 Push up a day",
     percent: 45,
   },
   {
-    id: 2, 
+    id: 2,
     image: "https://cdn.mos.cms.futurecdn.net/9ghCpUY6JaLtStkZkeH73T.jpg",
     title: "Push up",
     des: "100 Push up a day",
     percent: 45,
   },
   {
-    id: 3, 
+    id: 3,
     image: "https://cdn.mos.cms.futurecdn.net/9ghCpUY6JaLtStkZkeH73T.jpg",
     title: "Push up",
     des: "100 Push up a day",
     percent: 45,
   },
   {
-    id: 4, 
+    id: 4,
     image: "https://cdn.mos.cms.futurecdn.net/9ghCpUY6JaLtStkZkeH73T.jpg",
     title: "Push up",
     des: "100 Push up a day",
     percent: 45,
   },
   {
-    id: 5, 
+    id: 5,
     image: "https://cdn.mos.cms.futurecdn.net/9ghCpUY6JaLtStkZkeH73T.jpg",
     title: "Push up",
     des: "100 Push up a day",
@@ -63,17 +63,21 @@ const data = [
 ];
 
 export default function Practice({ navigation }) {
-
   return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.pageTitle}>Practice section</Text>
+    <View style={styles.container}>
       <FlatList
+        contentContainerStyle={{
+          flexGrow: 1,
+        }}
+        ListHeaderComponent={
+          <Text style={styles.pageTitle}>Practice section</Text>
+        }
+        stickyHeaderIndices={[0]}
+        keyExtractor={(item, idx) => item.id}
         data={data}
         renderItem={({ item }) => {
           return (
-            <View
-              style={styles.section}
-            >
+            <View style={styles.section}>
               <Image
                 style={styles.image}
                 source={{
@@ -89,20 +93,21 @@ export default function Practice({ navigation }) {
           );
         }}
       />
-    </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: "20px",
-    paddingVertical: "15px",
     backgroundColor: "white",
+    flex: 1,
   },
   pageTitle: {
-    fontSize: 32,
-    fontWeight: "bold",
-    // marginBottom: "20px",
+    fontSize: 24,
+    fontWeight: "600",
+    paddingHorizontal: 20,
+    paddingVertical: 25,
+    backgroundColor: "white",
   },
   image: {
     width: "65px",
@@ -113,8 +118,9 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     gap: "20px",
-    marginTop: "25px",
-    alignItems: "center"
+    marginBottom: "20px",
+    alignItems: "center",
+    paddingHorizontal: 25,
   },
   sectionInfo: {
     flex: "1",

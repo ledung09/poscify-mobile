@@ -197,6 +197,8 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: "20px",
     backgroundColor: settings.color.primary,
     marginBottom: "28px",
+
+
   },
   userInfo: {
     display: "flex",
