@@ -1,0 +1,49 @@
+import {
+  Text,
+  View,
+  Image,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
+import { settings } from "../../setting/setting";
+import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+
+export function PlayButton({ id }) {
+  const { navigate } = useNavigation();
+
+  return (
+    <TouchableOpacity
+      style={styles.playBtnOutter}
+      onPress={() => {
+        navigate("Exercise", { id: id });
+      }}
+    >
+      <Ionicons name="play" color="white" size={20} style={{ marginLeft: 3 }} />
+    </TouchableOpacity>
+  );
+}
+
+const styles = StyleSheet.create({
+  playBtnOutter: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: 45,
+    height: 45,
+    borderRadius: "50%",
+    backgroundColor: settings.color.primary,
+  },
+  barInner: {
+    backgroundColor: settings.color.primary,
+    height: "8px",
+    borderRadius: "5px",
+  },
+  barText: {
+    fontSize: "10px",
+    marginVertical: "auto",
+    marginHorizontal: "auto",
+    fontWeight: "700",
+  },
+});

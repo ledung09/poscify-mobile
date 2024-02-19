@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   },
   pieText: {
     position: "absolute",
-    fontSize: "24px",
+    fontSize: "22px",
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",

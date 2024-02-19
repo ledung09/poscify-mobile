@@ -12,6 +12,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import Stats from "./pages/Stats/Stats";
 import Analyze from "./pages/Analyze/Analyze";
 import StatsStack from "./pages/Stats/StatsStack";
+import Home from "./pages/Home/Home";
 
 const Tab = createBottomTabNavigator();
 
@@ -27,6 +28,11 @@ const navData = [
   {
     name: "Trang chủ",
     iconName: "home",
+    component: Home,
+  },
+  {
+    name: "Phân tích",
+    iconName: "analyze",
     component: HomePage,
   },
   {

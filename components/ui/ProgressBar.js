@@ -4,23 +4,22 @@ import { settings } from "../../setting/setting";
 export function ProgressBar({ value }) {
   return (
     <View style={styles.barOutter}>
-      <View style={[styles.barInner, { width: `${value}%` }]}>
-        <Text style={styles.barText}>{value}%</Text>
-      </View>
+      <View style={[styles.barInner, { width: `${value}%` }]}></View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   barOutter: {
+    flex: 1,
     backgroundColor: settings.color.lightGray,
-    height: "14px",
+    height: "8px",
     width: "100%",
     borderRadius: "5px",
   },
   barInner: {
     backgroundColor: settings.color.primary,
-    height: "14px",
+    height: "8px",
     borderRadius: "5px",
   },
   barText: {

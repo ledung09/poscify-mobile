@@ -6,8 +6,6 @@ import StatsStudent from "./StatsStudent";
 const Stack = createNativeStackNavigator();
 
 export default function StatsStack() {
-  
-
   return (
     <Stack.Navigator screenOptions={{ headerTitleAlign: "center" }}>
       <Stack.Screen
