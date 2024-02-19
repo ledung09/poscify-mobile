@@ -6,27 +6,56 @@ import {
   StyleSheet,
   TextInput,
   Image,
+  FlatList,
+  TouchableWithoutFeedback,
 } from "react-native";
 import { settings } from "../../setting/setting";
 import { Ionicons } from "@expo/vector-icons";
 import { ProgressBar } from "../../components/ui/ProgressBar";
 
+const pageComponents = [
+  {
+    id: 0,
+    component: SeatPostureAnalyze,
+  },
+  {
+    id: 1,
+    component: ActivitySuggestion,
+  },
+  {
+    id: 2,
+    component: TimePractice,
+  },
+];
+
 export default function Home() {
   const [text, onChangeText] = React.useState("Useless Text");
 
   return (
-    <ScrollView style={styles.container}>
-      <ProfileSecion />
+    <View style={styles.container}>
+      <FlatList
+        contentContainerStyle={{
+          flexGrow: 1,
+        }}
+        data={pageComponents}
+        renderItem={({ item }) => {
+          return <item.component />;
+        }}
+        ListHeaderComponent={ProfileSecion}
+        stickyHeaderIndices={[0]}
+        keyExtractor={(item, idx) => item.id}
+      />
+      {/* <ProfileSecion />
       <SeatPostureAnalyze />
       <ActivitySuggestion />
-      <TimePractice />
-    </ScrollView>
+      <TimePractice /> */}
+    </View>
   );
 }
 
 function ProfileSecion() {
   return (
-    <ScrollView>
+    <View style={{ }}>
       <View style={styles.profileSection}>
         <View style={styles.userInfo}>
           <View style={styles.profileImage}></View>
@@ -50,7 +79,7 @@ function ProfileSecion() {
           />
         </View>
       </View>
-    </ScrollView>
+    </View>
   );
 }
 
@@ -58,9 +87,16 @@ function SeatPostureAnalyze() {
   return (
     <View style={styles.section}>
       <Text style={styles.sectionHeader}>Phân tích dáng ngồi của bé</Text>
-      <View style={{ display: "flex", flexDirection: "row", gap: "25px" }}>
-        <Ionicons name="sad-outline" size={70} />
-        <View style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+      <View style={{ display: "flex", flexDirection: "row", gap: "22px" }}>
+        <Ionicons name="sad-outline" size={75} />
+        <View
+          style={{
+            flex: 1,
+            display: "flex",
+            flexDirection: "column",
+            paddingVertical: 8,
+          }}
+        >
           <View
             style={{
               display: "flex",
@@ -72,9 +108,9 @@ function SeatPostureAnalyze() {
             <ProgressBar value={50} />
             <Text
               style={{
-                fontSize: 16,
+                fontSize: 15,
                 fontWeight: 500,
-                marginBottom: 5,
+                marginBottom: 2,
                 width: 28,
               }}
             >
@@ -94,11 +130,10 @@ function ActivitySuggestion() {
         backgroundColor: "#DDF2FF",
         display: "flex",
         flexDirection: "row",
-        paddingLeft: 30,
-        paddingRight: 15,
+        paddingHorizontal: 25,
         paddingVertical: 15,
         borderRadius: 10,
-        marginVertical: 10,
+        marginBottom: 10,
       }}
     >
       <View style={{ flex: 1 }}>
@@ -119,8 +154,9 @@ function ActivitySuggestion() {
         style={{
           flex: 1,
           display: "flex",
+          flexDirection: "row",
           alignItems: "center",
-          justifyContent: "center",
+          justifyContent: "flex-end",
         }}
       >
         <Image
@@ -140,6 +176,12 @@ function TimePractice() {
   return (
     <View style={styles.section}>
       <Text style={styles.sectionHeader}>Thời gian tập cùng bé</Text>
+      <View style={{ display: "flex", flexDirection: "row", marginTop: 4 }}>
+        <View style={styles.dateBox}>
+          <Text>Sat</Text>
+          <Text style={{ fontSize: 20, fontWeight: 700 }}>26</Text>
+        </View>
+      </View>
     </View>
   );
 }
@@ -147,13 +189,14 @@ function TimePractice() {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
+    flex: 1,
   },
   profileSection: {
     position: "relative",
     borderBottomLeftRadius: "20px",
     borderBottomRightRadius: "20px",
     backgroundColor: settings.color.primary,
-    marginBottom: "24px",
+    marginBottom: "28px",
   },
   userInfo: {
     display: "flex",
@@ -184,7 +227,7 @@ const styles = StyleSheet.create({
     height: 52,
     width: "90%",
     position: "absolute",
-    bottom: "-24px",
+    bottom: "-28px",
     left: "50%",
     transform: "translateX(-50%)",
   },
@@ -203,16 +246,28 @@ const styles = StyleSheet.create({
     transform: "translateY(-65%)",
   },
   section: {
-    paddingVertical: "25px",
+    paddingVertical: "22px",
     paddingHorizontal: "20px",
   },
   sectionHeader: {
     fontSize: 19,
     fontWeight: 600,
-    marginBottom: 18,
+    marginBottom: 12,
   },
   sectionImageLeft: {
     width: 65,
     height: 65,
+  },
+
+  dateBox: {
+    width: 70,
+    height: 70,
+    borderRadius: 10,
+    backgroundColor: settings.color.lightGray,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 2,
   },
 });
