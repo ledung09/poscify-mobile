@@ -4,7 +4,6 @@ import {
   Image,
   ScrollView,
   StyleSheet,
-  TouchableOpacity,
 } from "react-native";
 
 import PercentCircle from "../../components/ui/PercentCircle";

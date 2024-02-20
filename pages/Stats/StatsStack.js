@@ -9,7 +9,7 @@ export default function StatsStack() {
   return (
     <Stack.Navigator screenOptions={{ headerTitleAlign: "center" }}>
       <Stack.Screen
-        name="Statistic"
+        name="Class Statistic"
         component={Stats}
         options={({ route, navigation }) => ({
           headerShown: false,

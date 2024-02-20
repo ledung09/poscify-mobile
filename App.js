@@ -1,102 +1,61 @@
 import * as React from "react";
-
-import { View, Text, Button } from "react-native";
 import "react-native-gesture-handler";
-import { NavigationContainer } from "@react-navigation/native";
+import Navigation from "./pages/Navigation";
 
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Ionicons } from "@expo/vector-icons";
-import { settings } from "./setting/setting";
-import PracticeStack from "./pages/Practice/PracticeStack";
-import StatsStack from "./pages/Stats/StatsStack";
-import Home from "./pages/Home/Home";
-import AnalyzeStack from "./pages/Analyze/AnalyzeStack";
-import Setting from "./pages/Setting/Setting";
-
-const Tab = createBottomTabNavigator();
-
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Home Screen</Text>
-    </View>
-  );
-}
-
-const navData = [
-  {
-    name: "Home",
-    headerText: "Trang chủ",
-    iconName: "home",
-    component: Home,
-  },
-  {
-    name: "Analyze",
-    headerText: "Thống kê",
-    iconName: "analytics",
-    component: AnalyzeStack,
-  },
-  {
-    name: "Exercise",
-    headerText: "Bài tập",
-    iconName: "body",
-    component: PracticeStack,
-  },
-  {
-    name: "Statistic",
-    headerText: "Thống kê",
-    iconName: "stats-chart",
-    component: StatsStack,
-  },
-  {
-    name: "Setting",
-    headerText: "Cài đặt",
-    iconName: "person-circle",
-    component: Setting,
-  },
-];
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  signInWithRedirect,
+  getRedirectResult,
+} from "firebase/auth";
+import { Pressable, Text } from "react-native";
+import { db } from "./firebaseConfig";
+import { doc, getDoc } from "firebase/firestore";
 
 function App() {
+  const auth = getAuth();
+  getRedirectResult(auth)
+    .then((result) => {
+      // This gives you a Google Access Token. You can use it to access Google APIs.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+
+      // The signed-in user info.
+      const user = result.user;
+      // IdP data available using getAdditionalUserInfo(result)
+      // ...
+
+      console.log(user);
+    })
+    .catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.customData.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      // ...
+    });
+
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={{
-          // tabBarShowLabel: false,
-          headerShown: false,
-          headerTitleAlign: "center",
-          tabBarActiveTintColor: settings.color.primary,
-          tabBarInactiveTintColor: settings.color.gray,
-        }}
-      >
-        {navData.map((nav, idx) => {
-          return (
-            <Tab.Screen
-              key={idx}
-              name={nav.name}
-              component={nav.component}
-              options={({ route, navigation }) => ({
-                // headerShown: ["Home", "Analyze", "Exercise", "Statistic"].includes(
-                //   route.name
-                // )
-                //   ? false
-                //   : true,
-                tabBarLabel: nav.headerText,
-                tabBarIcon: ({ color, size, focused }) => (
-                  <Ionicons
-                    name={
-                      route.name === nav.name &&
-                      (focused ? nav.iconName : `${nav.iconName}-outline`)
-                    }
-                    color={color}
-                    size={size}
-                  />
-                ),
-              })}
-            />
-          );
-        })}
-      </Tab.Navigator>
-    </NavigationContainer>
+    // <Pressable
+    //   onPress={async () => {
+    //     const provider = new GoogleAuthProvider();
+
+    //     // const docRef = doc(db, "user", "nocopyrightgamingmusic123@gmail.com");
+    //     // const docSnap = await getDoc(docRef);
+
+    //     // if (docSnap.exists()) {
+    //     //   console.log("Document data:", docSnap.data());
+    //     // }
+    //     signInWithRedirect(auth, provider);
+    //   }}
+    // >
+    //   <Text>Click me</Text>
+    // </Pressable>
+    <Navigation />
   );
 }
 

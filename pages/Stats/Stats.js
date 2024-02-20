@@ -6,7 +6,7 @@ import {
   Image,
   ScrollView,
   StyleSheet,
-  TouchableOpacity,
+  Pressable,
 } from "react-native";
 import {
   VictoryBar,
@@ -106,7 +106,7 @@ export default function Stats() {
                           {pair &&
                             pair.map((item, idx3) => {
                               return (
-                                <TouchableOpacity
+                                <Pressable
                                   onPress={() => {
                                     navigate("Student Statistic", {
                                       id: item.id,
@@ -130,7 +130,7 @@ export default function Stats() {
                                       ? 8
                                       : (item.id + 1) % 8}
                                   </Text>
-                                </TouchableOpacity>
+                                </Pressable>
                               );
                             })}
                         </View>

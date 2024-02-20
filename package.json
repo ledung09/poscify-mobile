@@ -19,6 +19,7 @@
     "@react-navigation/native-stack": "^6.9.17",
     "expo": "~49.0.15",
     "expo-status-bar": "~1.6.0",
+    "firebase": "^10.8.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.72.10",
@@ -32,7 +33,12 @@
     "react-native-svg": "13.9.0",
     "react-native-web": "~0.19.6",
     "react-type-animation": "^3.2.0",
-    "victory-native": "^36.9.1"
+    "victory-native": "^36.9.1",
+    "expo-auth-session": "~5.0.2",
+    "expo-crypto": "~12.4.1",
+    "expo-web-browser": "~12.3.2",
+    "expo-dev-client": "~2.4.13",
+    "@react-native-async-storage/async-storage": "1.18.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

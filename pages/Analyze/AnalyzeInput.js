@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity } from "react-native";
+import { Text, View, StyleSheet, Image, ScrollView } from "react-native";
 import { settings } from "../../setting/setting";
 import { Button } from "../../components/ui/Button";
 import { useNavigation } from "@react-navigation/native";

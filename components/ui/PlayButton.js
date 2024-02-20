@@ -4,7 +4,7 @@ import {
   Image,
   ScrollView,
   StyleSheet,
-  TouchableOpacity,
+  Pressable,
 } from "react-native";
 import { settings } from "../../setting/setting";
 import { Ionicons } from "@expo/vector-icons";
@@ -14,14 +14,14 @@ export function PlayButton({ id }) {
   const { navigate } = useNavigation();
 
   return (
-    <TouchableOpacity
+    <Pressable
       style={styles.playBtnOutter}
       onPress={() => {
         navigate("Exercise", { id: id });
       }}
     >
       <Ionicons name="play" color="white" size={16} style={{ marginLeft: 3 }} />
-    </TouchableOpacity>
+    </Pressable>
   );
 }
 

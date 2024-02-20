@@ -4,19 +4,19 @@ import {
   Image,
   ScrollView,
   StyleSheet,
-  TouchableOpacity,
+  Pressable,
 } from "react-native";
 import { settings } from "../../setting/setting";
 import { Ionicons } from "@expo/vector-icons";
 
 export function Button({ iconName, text, ...props }) {
   return (
-    <TouchableOpacity style={styles.container} {...props}>
+    <Pressable style={styles.container} {...props}>
       {iconName && (
         <Ionicons name={iconName} size={18} style={{ height: 15 }} />
       )}
       <Text style={styles.text}>{text}</Text>
-    </TouchableOpacity>
+    </Pressable>
   );
 }
 

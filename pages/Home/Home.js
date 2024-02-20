@@ -7,7 +7,6 @@ import {
   TextInput,
   Image,
   FlatList,
-  TouchableWithoutFeedback,
 } from "react-native";
 import { settings } from "../../setting/setting";
 import { Ionicons } from "@expo/vector-icons";
