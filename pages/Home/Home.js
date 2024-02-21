@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
   profileText: {
     fontSize: "20px",
     fontWeight: 500,
-    color: "white",
+    color: "black",
     marginBottom: "3px",
   },
   inputWrapper: {

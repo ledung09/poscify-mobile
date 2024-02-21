@@ -83,14 +83,14 @@ export default function Practice({ navigation }) {
 
 function ExerciseItem({ item }) {
   const { navigate } = useNavigation();
-  const [bookmarked, setBookMarked] = React.useState(false);
+  const [bookmarked, setBookmarked] = React.useState(false);
 
   return (
     <Pressable
       style={styles.section}
       onPress={() => {
         {
-          navigate("Exercise", { id: item.id });
+          navigate("Exercise", { id: item.id, bookmarked });
         }
       }}
     >
@@ -106,7 +106,7 @@ function ExerciseItem({ item }) {
       </View>
       <Pressable
         onPress={() => {
-          setBookMarked((prev) => !prev);
+          setBookmarked((prev) => !prev);
         }}
         style={{
           width: 30,
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    gap: 4,
+    gap: 5,
   },
   sectionTitle: {
     fontSize: 18.5,

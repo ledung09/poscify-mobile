@@ -29,7 +29,7 @@ const navData = [
   {
     name: "Exercises",
     headerText: "Bài tập",
-    iconName: "body",
+    iconName: "layers",
     component: PracticeStack,
   },
   {
@@ -41,7 +41,7 @@ const navData = [
   {
     name: "Setting",
     headerText: "Cài đặt",
-    iconName: "person-circle",
+    iconName: "person",
     component: Setting,
   },
 ];

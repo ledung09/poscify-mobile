@@ -2,6 +2,7 @@ export const settings = {
   color: {
     primary: "#fe6f32",
     secondary: "#FFE9E0",
+    //
     lightGray: "#F2F2F2",
     gray: "#C8C8C8",
     classDiagram: {
