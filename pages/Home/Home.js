@@ -32,16 +32,17 @@ export default function Home() {
 
   return (
     <View style={styles.container}>
+      <ProfileSecion />
       <FlatList
-        contentContainerStyle={{
-          flexGrow: 1,
-        }}
+        // contentContainerStyle={{
+        //   flexGrow: 1,
+        // }}
         data={pageComponents}
         renderItem={({ item }) => {
           return <item.component />;
         }}
-        ListHeaderComponent={ProfileSecion}
-        stickyHeaderIndices={[0]}
+        // ListHeaderComponent={ProfileSecion}
+        // stickyHeaderIndices={[0]}
         keyExtractor={(item, idx) => item.id}
       />
       {/* <ProfileSecion />
@@ -54,7 +55,7 @@ export default function Home() {
 
 function ProfileSecion() {
   return (
-    <View style={{ }}>
+    <View style={{}}>
       <View style={styles.profileSection}>
         <View style={styles.userInfo}>
           <View style={styles.profileImage}></View>
@@ -196,8 +197,6 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: "20px",
     backgroundColor: settings.color.primary,
     marginBottom: "28px",
-
-
   },
   userInfo: {
     display: "flex",

@@ -65,14 +65,16 @@ const data = [
 export default function Practice({ navigation }) {
   return (
     <View style={styles.container}>
+      <Text style={styles.pageTitle}>Practice section</Text>
+
       <FlatList
-        contentContainerStyle={{
-          flexGrow: 1,
-        }}
-        ListHeaderComponent={
-          <Text style={styles.pageTitle}>Practice section</Text>
-        }
-        stickyHeaderIndices={[0]}
+        // contentContainerStyle={{
+        //   flexGrow: 1,
+        // }}
+        // ListHeaderComponent={
+        //   <Text style={styles.pageTitle}>Practice section</Text>
+        // }
+        // stickyHeaderIndices={[0]}
         keyExtractor={(item, idx) => item.id}
         data={data}
         renderItem={({ item }) => {

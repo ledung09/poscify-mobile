@@ -57,6 +57,15 @@ export default function Navigation() {
             headerTitleAlign: "center",
             tabBarActiveTintColor: settings.color.primary,
             tabBarInactiveTintColor: settings.color.gray,
+            tabBarItemStyle: { fontWeight: "900", border: "none" },
+            tabBarStyle: {
+              borderColor: "rgb(234 234 234)",
+              paddingTop: 1,
+              paddingBottom: 1,
+              borderRadius: 5,
+              borderWidth: 0.5,
+            },
+            tabBarLabelStyle: { display: "none", fontWeight: 600 },
           }}
         >
           {navData.map((nav, idx) => {
