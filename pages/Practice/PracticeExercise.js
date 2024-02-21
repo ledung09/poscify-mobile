@@ -1,6 +1,7 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+import { Header } from "../../components/page/Header";
 
 export default function PracticeExercise() {
   const navigation = useNavigation();
@@ -14,13 +15,29 @@ export default function PracticeExercise() {
     });
     return () =>
       navigation.getParent()?.setOptions({
-        tabBarStyle: undefined,
+        tabBarStyle: {
+          borderColor: "rgb(234 234 234)",
+          height: 55,
+          paddingTop: 5,
+          paddingBottom: 5,
+          borderRadius: 5,
+          borderWidth: 0.5,
+        },
       });
   }, [navigation]);
 
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+    <View style={styles.container}>
+      <Header title="Chi tiết bài tập" />
+
       <Text>{params.id}</Text>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "white",
+  },
+});

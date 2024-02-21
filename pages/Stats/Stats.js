@@ -17,6 +17,7 @@ import {
 import { settings } from "../../setting/setting";
 import { seatDataMapping } from "../../util/util";
 import { useNavigation } from "@react-navigation/native";
+import { Header } from "../../components/page/Header";
 
 const data = [
   { id: 0, status: "high" },
@@ -68,9 +69,15 @@ export default function Stats() {
   const { navigate } = useNavigation();
 
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        { paddingVertical: screenAngle === 0 ? 0 : 25 },
+      ]}
+    >
       {screenAngle === 0 && (
         <>
+          <Header title={"Thống kê lớp học"} goBackShown={false} />
           <View style={styles.rotateWrapper}>
             <Image
               source={{
@@ -149,7 +156,6 @@ const styles = StyleSheet.create({
   container: {
     height: "100%",
     backgroundColor: "white",
-    paddingVertical: "25px",
     paddingHorizontal: "30px",
   },
   diagramWrapper: {
@@ -159,7 +165,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   rotateWrapper: {
-    height: "100%",
+    height: "calc(100% - 68px)",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
@@ -168,7 +174,7 @@ const styles = StyleSheet.create({
   },
   rotateText: {
     fontSize: "25px",
-    fontWeight: 600,
+    fontWeight: 500,
   },
   diagramRow: {
     display: "flex",

@@ -7,19 +7,17 @@ const Stack = createNativeStackNavigator();
 
 export default function AnalyzeStack() {
   return (
-    <Stack.Navigator screenOptions={{ headerTitleAlign: "center", }}>
+    <Stack.Navigator screenOptions={{ headerTitleAlign: "center", headerShown: false }}>
       <Stack.Screen
         name="Analyze Input"
         component={AnalyzeInput}
         options={({ route, navigation }) => ({
-          headerShown: false
         })}
       />
       <Stack.Screen
         name="AnalyzeResult"
         component={AnalyzeResult}
         options={({ route, navigation }) => ({
-          headerTitle: "Kết quả phân tích"
         })}
       />
     </Stack.Navigator>

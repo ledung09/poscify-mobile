@@ -7,13 +7,13 @@ const Stack = createNativeStackNavigator();
 
 export default function StatsStack() {
   return (
-    <Stack.Navigator screenOptions={{ headerTitleAlign: "center" }}>
+    <Stack.Navigator
+      screenOptions={{ headerTitleAlign: "center", headerShown: false }}
+    >
       <Stack.Screen
         name="Class Statistic"
         component={Stats}
-        options={({ route, navigation }) => ({
-          headerShown: false,
-        })}
+        options={({ route, navigation }) => ({})}
       />
       <Stack.Screen
         name="Student Statistic"

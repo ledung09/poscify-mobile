@@ -4,11 +4,15 @@ import {
   Image,
   ScrollView,
   StyleSheet,
-  TouchableOpacity,
+  Pressable,
 } from "react-native";
 import { ProgressBar } from "../../components/ui/ProgressBar";
 import { FlatList } from "react-native-gesture-handler";
-import { PlayButton } from "../../components/ui/PlayButton";
+import { Header } from "../../components/page/Header";
+import { useNavigation } from "@react-navigation/native";
+import { Ionicons } from "@expo/vector-icons";
+import React from "react";
+import { settings } from "../../setting/setting";
 
 const data = [
   {
@@ -65,37 +69,67 @@ const data = [
 export default function Practice({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.pageTitle}>Practice section</Text>
-
+      <Header title="Bài tập" goBackShown={false} style={{ marginBottom: 5 }} />
       <FlatList
-        // contentContainerStyle={{
-        //   flexGrow: 1,
-        // }}
-        // ListHeaderComponent={
-        //   <Text style={styles.pageTitle}>Practice section</Text>
-        // }
-        // stickyHeaderIndices={[0]}
         keyExtractor={(item, idx) => item.id}
         data={data}
         renderItem={({ item }) => {
-          return (
-            <View style={styles.section}>
-              <Image
-                style={styles.image}
-                source={{
-                  uri: item.image,
-                }}
-              />
-              <View style={styles.sectionInfo}>
-                <Text style={styles.sectionTitle}>{item.title}</Text>
-                <Text style={styles.sectionDes}>{item.des}</Text>
-              </View>
-              <PlayButton id={item.id} />
-            </View>
-          );
+          return <ExerciseItem item={item} />;
         }}
       />
     </View>
+  );
+}
+
+function ExerciseItem({ item }) {
+  const { navigate } = useNavigation();
+  const [bookmarked, setBookMarked] = React.useState(false);
+
+  return (
+    <Pressable
+      style={styles.section}
+      onPress={() => {
+        {
+          navigate("Exercise", { id: item.id });
+        }
+      }}
+    >
+      <Image
+        style={styles.image}
+        source={{
+          uri: item.image,
+        }}
+      />
+      <View style={styles.sectionInfo}>
+        <Text style={styles.sectionTitle}>{item.title}</Text>
+        <Text style={styles.sectionDes}>{item.des}</Text>
+      </View>
+      <Pressable
+        onPress={() => {
+          setBookMarked((prev) => !prev);
+        }}
+        style={{
+          width: 30,
+          height: 30,
+          border: "1px solid #C8C8C8",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          borderRadius: 10,
+          marginBottom: "auto",
+        }}
+      >
+        {!bookmarked ? (
+          <Ionicons name="bookmark-outline" size={16} />
+        ) : (
+          <Ionicons
+            name="bookmark"
+            size={16}
+            style={{ color: settings.color.primary }}
+          />
+        )}
+      </Pressable>
+    </Pressable>
   );
 }
 
@@ -112,31 +146,34 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   image: {
-    width: "65px",
-    height: "65px",
+    width: "95px",
+    height: "75px",
     borderRadius: "15px",
   },
   section: {
     display: "flex",
     flexDirection: "row",
     gap: "20px",
-    marginBottom: "20px",
+    marginBottom: "15px",
     alignItems: "center",
-    paddingHorizontal: 25,
+    marginHorizontal: 15,
+    padding: 15,
+    border: "1px solid #C2C2C2",
+    borderRadius: 20,
   },
   sectionInfo: {
     flex: "1",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    gap: 3,
+    gap: 4,
   },
   sectionTitle: {
-    fontSize: "20px",
-    fontWeight: "600",
+    fontSize: 18.5,
+    fontWeight: "700",
   },
   sectionDes: {
-    fontSize: "16px",
+    fontSize: "15px",
     color: "#192126",
     opacity: "0.5",
   },

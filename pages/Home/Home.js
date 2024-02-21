@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
     position: "relative",
     borderBottomLeftRadius: "20px",
     borderBottomRightRadius: "20px",
-    backgroundColor: settings.color.primary,
+    backgroundColor: settings.color.secondary,
     marginBottom: "28px",
   },
   userInfo: {
@@ -251,7 +251,7 @@ const styles = StyleSheet.create({
   },
   sectionHeader: {
     fontSize: 19,
-    fontWeight: 600,
+    fontWeight: 700,
     marginBottom: 12,
   },
   sectionImageLeft: {
