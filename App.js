@@ -14,10 +14,37 @@ import { Image, Pressable, Text, View } from "react-native";
 import { db } from "./firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 import { settings } from "./setting/setting";
+import { AccountProvider, useAccount } from "./components/hooks/useAccount";
+
+import {
+  MD3LightTheme as DefaultTheme,
+  PaperProvider,
+} from "react-native-paper";
+
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: settings.color.primary,
+    secondary: "yellow",
+  },
+};
 
 function App() {
-  const [accountInfo, setAccountInfo] = React.useState(null);
+  return (
+    <PaperProvider theme={theme}>
+      <AccountProvider>
+        <MainPage />
+      </AccountProvider>
+    </PaperProvider>
+  );
+}
+
+function MainPage() {
+  const { account, setAccount } = useAccount();
+
   const [loginFail, setLoginFail] = React.useState(false);
+
   const auth = getAuth();
 
   getRedirectResult(auth).then((result) => {
@@ -36,10 +63,11 @@ function App() {
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-          setAccountInfo({
+          setAccount({
             name: user.displayName,
             email: user.email,
             image: user.photoURL,
+            role: docSnap.data().role,
           });
         } else {
           signOut(auth)
@@ -56,20 +84,11 @@ function App() {
       verify();
     }
   });
-  // .catch((error) => {
-  //   // Handle Errors here.
-  //   const errorCode = error.code;
-  //   const errorMessage = error.message;
-  //   // The email of the user's account used.
-  //   const email = error.customData.email;
-  //   // The AuthCredential type that was used.
-  //   const credential = GoogleAuthProvider.credentialFromError(error);
-  //   // ...
-  // });
 
   return (
     <>
-      {!accountInfo ? <NonSignInHome loginFail={loginFail} /> : <Navigation />}
+      <Navigation />
+      {/* {!account ? <NonSignInHome loginFail={account} /> : <Navigation />} */}
     </>
   );
 }

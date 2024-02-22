@@ -7,16 +7,24 @@ import {
   Image,
   ScrollView,
   Pressable,
+  Button,
 } from "react-native";
 import { Header } from "../../components/page/Header";
 import { settings } from "../../setting/setting";
 import { InfoPill } from "../../components/ui/InfoPill";
 import { Ionicons } from "@expo/vector-icons";
+import { Iframe } from "@bounceapp/iframe";
+
+import { Switch } from "react-native-paper";
 
 export default function PracticeExercise() {
   const navigation = useNavigation();
   const { params } = useRoute();
   const { id, bookmarked } = params;
+
+  const [isSwitchOn, setIsSwitchOn] = React.useState(false);
+
+  const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
 
   React.useEffect(() => {
     navigation.getParent()?.setOptions({
@@ -40,19 +48,24 @@ export default function PracticeExercise() {
   return (
     <View style={styles.container}>
       <Header title="Chi tiết bài tập" />
-
-      <Image
-        source={{
-          uri: "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2020/07/13/hunch-fs-preds.jpg",
-        }}
+      <View
         style={{
-          marginHorizontal: "auto",
-          width: "80%",
-          height: "270px",
-          objectFit: "contain",
-          marginVertical: 20,
+          display: "flex",
+          justifyContent: "center",
+          marginTop: 15,
+          marginBottom: 25,
+          paddingHorizontal: 10,
         }}
-      />
+      >
+        <Iframe
+          uri="https://www.youtube.com/embed/cqyziA30whE?&autoplay=1&mute=1"
+          style={{
+            width: "100%",
+            height: "200px",
+          }}
+        />
+      </View>
+
       <ScrollView style={{ paddingHorizontal: 15 }}>
         <View style={{ display: "flex", flexDirection: "column", gap: 5 }}>
           <View
@@ -123,6 +136,34 @@ export default function PracticeExercise() {
             voluptatem voluptatum dolores qui perspiciatis!
           </Text>
         </View>
+        <View
+          style={{
+            marginTop: 30,
+            border: "1px solid #C8C8C8",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            paddingVertical: 10,
+            paddingHorizontal: 15,
+            borderRadius: 20,
+            gap: 12,
+          }}
+        >
+          <Ionicons
+            name="alarm-outline"
+            size={45}
+            color={settings.color.primary}
+          />
+          <View style={styles.sectionInfo}>
+            <Text style={styles.sectionTitle}>Set alarm</Text>
+            <Text style={styles.sectionDes}>10AM</Text>
+          </View>
+          <Switch
+            value={isSwitchOn}
+            onValueChange={onToggleSwitch}
+            style={{ width: 35, height: 18 }}
+          />
+        </View>
       </ScrollView>
 
       <Text>{params.id}</Text>
@@ -134,5 +175,21 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
+  },
+  sectionInfo: {
+    flex: "1",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    gap: 2,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: "700",
+  },
+  sectionDes: {
+    fontSize: 13,
+    color: "#192126",
+    opacity: "0.5",
   },
 });

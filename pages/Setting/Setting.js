@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { settings } from "../../setting/setting";
 import { Header } from "../../components/page/Header";
+import { useAccount } from "../../components/hooks/useAccount";
 
 export default function Setting() {
   return (
@@ -12,6 +13,14 @@ export default function Setting() {
 }
 
 function TopSection() {
+  // const { account } = useAccount();
+  const account = {
+    name: "1",
+    email: "1",
+    image: "https://cdn-icons-png.flaticon.com/256/6028/6028690.png",
+    role: "!23",
+  };
+
   return (
     <View style={{}}>
       <Header title={"Cài đặt"} goBackShown={false} />
@@ -25,7 +34,7 @@ function TopSection() {
               margin: "auto",
             }}
             source={{
-              uri: "https://cdn.mos.cms.futurecdn.net/9ghCpUY6JaLtStkZkeH73T.jpg",
+              uri: account.image,
             }}
           />
         </View>
@@ -37,10 +46,10 @@ function TopSection() {
             marginBottom: 4,
           }}
         >
-          Đinh Lê Dũng
+          {account.name}
         </Text>
         <Text style={{ fontSize: 15, fontWeight: 400, color: "#9a9a9e" }}>
-          Phụ huynh
+          {account.role}
         </Text>
         <View style={styles.mainSetting}>
           <View style={styles.setting}></View>

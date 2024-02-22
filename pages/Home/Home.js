@@ -11,6 +11,8 @@ import {
 import { settings } from "../../setting/setting";
 import { Ionicons } from "@expo/vector-icons";
 import { ProgressBar } from "../../components/ui/ProgressBar";
+import { useAccount } from "../../components/hooks/useAccount";
+import Carousel from "react-native-reanimated-carousel";
 
 const pageComponents = [
   {
@@ -54,14 +56,29 @@ export default function Home() {
 }
 
 function ProfileSecion() {
+  // const { account, setAccount } = useAccount();
+  const account = {
+    name: "1",
+    email: "1",
+    image: "https://cdn-icons-png.flaticon.com/256/6028/6028690.png",
+    role: "!23",
+  };
+
   return (
     <View style={{}}>
       <View style={styles.profileSection}>
         <View style={styles.userInfo}>
-          <View style={styles.profileImage}></View>
+          <Image
+            source={{
+              uri: account.image,
+            }}
+            style={styles.profileImage}
+          />
           <View style={styles.profileTextSection}>
-            <Text style={styles.profileText}>Xin chào Dũng,</Text>
-            <Text style={styles.profileText}>đã đến với Poscify</Text>
+            <Text style={styles.profileText}>Xin chào {account.name},</Text>
+            <Text style={[styles.profileText, { fontSize: 18 }]}>
+              đã đến với Poscify!
+            </Text>
           </View>
         </View>
         <View style={styles.inputWrapper}>
@@ -105,7 +122,7 @@ function SeatPostureAnalyze() {
               alignItems: "center",
             }}
           >
-            <ProgressBar value={50} />
+            <ProgressBar value={50} color={"low"} />
             <Text
               style={{
                 fontSize: 15,
@@ -142,9 +159,9 @@ function ActivitySuggestion() {
         </Text>
         <Text
           style={{
-            fontSize: 15.5,
+            fontSize: 16,
             color: settings.color.gray,
-            fontWeight: 600,
+            fontWeight: 500,
           }}
         >
           8AM - 10AM
@@ -172,7 +189,13 @@ function ActivitySuggestion() {
   );
 }
 
+const DATA = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"];
+
 function TimePractice() {
+  const r = React.useRef(null);
+
+  const [loop, setLoop] = React.useState(false);
+
   return (
     <View style={styles.section}>
       <Text style={styles.sectionHeader}>Thời gian tập cùng bé</Text>
@@ -195,7 +218,7 @@ const styles = StyleSheet.create({
     position: "relative",
     borderBottomLeftRadius: "20px",
     borderBottomRightRadius: "20px",
-    backgroundColor: settings.color.secondary,
+    backgroundColor: settings.color.primary,
     marginBottom: "28px",
   },
   userInfo: {
@@ -218,10 +241,10 @@ const styles = StyleSheet.create({
     flexDirection: "column",
   },
   profileText: {
-    fontSize: "20px",
-    fontWeight: 500,
-    color: "black",
-    marginBottom: "3px",
+    fontSize: "21px",
+    fontWeight: 600,
+    marginBottom: "4px",
+    color: "white",
   },
   inputWrapper: {
     height: 52,

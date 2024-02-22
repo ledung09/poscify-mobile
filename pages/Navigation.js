@@ -24,7 +24,7 @@ const navData = [
   },
   {
     name: "Analyze",
-    headerText: "Thống kê",
+    headerText: "Phân tích",
     iconName: "analytics",
     component: AnalyzeStack,
   },

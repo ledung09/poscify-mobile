@@ -1,10 +1,23 @@
 import { Text, View, Image, ScrollView, StyleSheet } from "react-native";
 import { settings } from "../../setting/setting";
 
-export function ProgressBar({ value }) {
+export function ProgressBar({ value, color }) {
   return (
     <View style={styles.barOutter}>
-      <View style={[styles.barInner, { width: `${value}%` }]}></View>
+      <View
+        style={[
+          styles.barInner,
+          {
+            width: `${value}%`,
+            backgroundColor:
+              color === "high"
+                ? settings.color.classDiagram.high
+                : color === "medium"
+                ? settings.color.classDiagram.medium
+                : settings.color.classDiagram.low,
+          },
+        ]}
+      ></View>
     </View>
   );
 }
@@ -18,7 +31,6 @@ const styles = StyleSheet.create({
     borderRadius: "5px",
   },
   barInner: {
-    backgroundColor: settings.color.primary,
     height: "8px",
     borderRadius: "5px",
   },

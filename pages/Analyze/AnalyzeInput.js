@@ -2,12 +2,14 @@ import { Text, View, StyleSheet, Image, ScrollView } from "react-native";
 import { settings } from "../../setting/setting";
 import { Button } from "../../components/ui/Button";
 import { useNavigation } from "@react-navigation/native";
+import { Header } from "../../components/page/Header";
 
 export default function AnalyzeInput() {
-  const { navigate } = useNavigation()
+  const { navigate } = useNavigation();
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <View style={styles.container}>
+      <Header title="Phân tích dáng ngồi" goBackShown={false} />
       <View style={styles.wrapper}>
         <Image
           source={{
@@ -21,20 +23,23 @@ export default function AnalyzeInput() {
         </Text>
 
         <Text style={styles.description}>
-          Hãy cho chúng tôi phân tích dáng ngồi của con bạn!
+          Hãy để chúng tôi phân tích dáng ngồi của con bạn!
         </Text>
-        <Button onPress={() => {
-          navigate("AnalyzeResult", {})
-        }} iconName="cloud-upload" text="Đăng tải video của bạn"  />
+        <Button
+          onPress={() => {
+            navigate("AnalyzeResult", {});
+          }}
+          iconName="cloud-upload"
+          text="Đăng tải video của bạn"
+        />
       </View>
-    </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    // height: "100%",
-    paddingVertical: "20px",
+    height: "100%",
     flexGrow: 1,
     justifyContent: "center",
     backgroundColor: "white",
@@ -56,6 +61,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     maxWidth: "85%",
     lineHeight: "1.3",
-    marginBottom: "50px",
+    marginBottom: "30px",
   },
 });
