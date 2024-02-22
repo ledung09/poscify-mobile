@@ -10,6 +10,8 @@ import StatsStack from "./Stats/StatsStack";
 import Home from "./Home/Home";
 import AnalyzeStack from "./Analyze/AnalyzeStack";
 import Setting from "./Setting/Setting";
+import { getAuth, signOut } from "firebase/auth";
+import { auth } from "../firebaseConfig";
 
 const Tab = createBottomTabNavigator();
 
