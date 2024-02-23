@@ -4,24 +4,8 @@ import { Button } from "../../components/ui/Button";
 import { useNavigation } from "@react-navigation/native";
 import { Header } from "../../components/page/Header";
 
-export default function AnalyzeInput() {
+export default function AnalyzeCamera() {
   const { navigate } = useNavigation();
-
-  const handleUploadVideo = () => {
-    Alert.alert(
-      "Upload Video",
-      "Bạn đã chọn đăng tải video của bạn!",
-      [
-        {
-          text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
-          style: "cancel",
-        },
-        { text: "OK", onPress: () => navigate("AnalyzeCamera", {}) },
-      ],
-      { cancelable: false }
-    );
-  };
 
   return (
     <View style={styles.container}>
@@ -43,11 +27,10 @@ export default function AnalyzeInput() {
         </Text>
         <Button
           onPress={() => {
-            handleUploadVideo;
-            navigate("AnalyzeCamera", {});
+            navigate("AnalyzeResult", {});
           }}
           iconName="cloud-upload"
-          text="Đăng tải video của bạn"
+          text="Phân tích"
         />
       </View>
     </View>

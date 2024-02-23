@@ -9,6 +9,7 @@ export const settings = {
       low: "rgb(74, 222, 128)",
       medium: "rgb(250, 204, 21)",
       high: "rgb(248, 113, 113)",
+      none: "rgb(128, 128, 128)",
     },
   },
 };

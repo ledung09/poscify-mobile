@@ -57,11 +57,11 @@ export default function AnalyzeResult() {
         >
           <View style={styles.chartBox}>
             <Text style={styles.chartBoxTitle}>Cong lưng</Text>
-            <PercentCircle percent={70} />
+            <PercentCircle percent={50} />
           </View>
           <View style={styles.chartBox}>
-            <Text style={styles.chartBoxTitle}>Cong cột sống</Text>
-            <PercentCircle percent={70} />
+            <Text style={styles.chartBoxTitle}>Vị trí mắt</Text>
+            <PercentCircle percent={60} />
           </View>
         </View>
       </View>

@@ -21,36 +21,36 @@ import { useNavigation } from "@react-navigation/native";
 import { Header } from "../../components/page/Header";
 
 const data = [
-  { id: 0, status: "high" },
+  { id: 0, status: "low" },
   { id: 1, status: "low" },
-  { id: 2, status: "medium" },
+  { id: 2, status: "none" },
   { id: 3, status: "high" },
   { id: 4, status: "medium" },
-  { id: 5, status: "low" },
-  { id: 6, status: "high" },
+  { id: 5, status: "none" },
+  { id: 6, status: "none" },
   { id: 7, status: "low" },
-  { id: 8, status: "medium" },
+  { id: 8, status: "none" },
   { id: 9, status: "high" },
   { id: 10, status: "low" },
   { id: 11, status: "low" },
   { id: 12, status: "medium" },
-  { id: 13, status: "high" },
+  { id: 13, status: "none" },
   { id: 14, status: "medium" },
   { id: 15, status: "low" },
   { id: 16, status: "high" },
   { id: 17, status: "low" },
-  { id: 18, status: "medium" },
-  { id: 19, status: "high" },
+  { id: 18, status: "none" },
+  { id: 19, status: "low" },
   { id: 20, status: "low" },
   { id: 21, status: "low" },
   { id: 22, status: "medium" },
   { id: 23, status: "high" },
   { id: 24, status: "medium" },
   { id: 25, status: "low" },
-  { id: 26, status: "high" },
+  { id: 26, status: "none" },
   { id: 27, status: "low" },
   { id: 28, status: "medium" },
-  { id: 29, status: "high" },
+  { id: 29, status: "none" },
   { id: 30, status: "low" },
   { id: 31, status: "high" },
   { id: 32, status: "medium" },
@@ -70,7 +70,7 @@ export default function Stats() {
         setLoading(true);
         const timeoutId = setTimeout(() => {
           setLoading(false);
-        }, 1000);
+        }, 5000);
       }
     });
   }, []);
@@ -161,6 +161,8 @@ export default function Stats() {
                                               : item.status === "medium"
                                               ? settings.color.classDiagram
                                                   .medium
+                                              : item.status === "none"
+                                              ? settings.color.classDiagram.none
                                               : settings.color.classDiagram
                                                   .high,
                                         },
