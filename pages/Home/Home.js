@@ -13,18 +13,31 @@ import { Ionicons } from "@expo/vector-icons";
 import { ProgressBar } from "../../components/ui/ProgressBar";
 import { useAccount } from "../../components/hooks/useAccount";
 import Carousel from "react-native-reanimated-carousel";
+import { VictoryAxis, VictoryBar, VictoryChart } from "victory-native";
 
 const pageComponents = [
   {
+    id: -2,
+    component: TopStudent,
+  },
+  {
+    id: -1,
+    component: TeacherStats,
+  },
+  {
     id: 0,
-    component: SeatPostureAnalyze,
+    component: ChildInfo,
   },
   {
     id: 1,
-    component: ActivitySuggestion,
+    component: SeatPostureAnalyze,
   },
   {
     id: 2,
+    component: ActivitySuggestion,
+  },
+  {
+    id: 3,
     component: TimePractice,
   },
 ];
@@ -36,21 +49,12 @@ export default function Home() {
     <View style={styles.container}>
       <ProfileSecion />
       <FlatList
-        // contentContainerStyle={{
-        //   flexGrow: 1,
-        // }}
         data={pageComponents}
         renderItem={({ item }) => {
           return <item.component />;
         }}
-        // ListHeaderComponent={ProfileSecion}
-        // stickyHeaderIndices={[0]}
         keyExtractor={(item, idx) => item.id}
       />
-      {/* <ProfileSecion />
-      <SeatPostureAnalyze />
-      <ActivitySuggestion />
-      <TimePractice /> */}
     </View>
   );
 }
@@ -120,6 +124,7 @@ function SeatPostureAnalyze() {
               flexDirection: "row",
               gap: 20,
               alignItems: "center",
+              marginBottom: 1,
             }}
           >
             <ProgressBar value={50} color={"low"} />
@@ -128,12 +133,108 @@ function SeatPostureAnalyze() {
                 fontSize: 15,
                 fontWeight: 500,
                 marginBottom: 2,
-                width: 28,
+                width: 35,
               }}
             >
               Eye
             </Text>
           </View>
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              gap: 20,
+              alignItems: "center",
+              marginBottom: 1,
+            }}
+          >
+            <ProgressBar value={50} color={"low"} />
+            <Text
+              style={{
+                fontSize: 15,
+                fontWeight: 500,
+                marginBottom: 2,
+                width: 35,
+              }}
+            >
+              Neck
+            </Text>
+          </View>
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              gap: 20,
+              alignItems: "center",
+              marginBottom: 1,
+            }}
+          >
+            <ProgressBar value={50} color={"low"} />
+            <Text
+              style={{
+                fontSize: 15,
+                fontWeight: 500,
+                marginBottom: 2,
+                width: 35,
+              }}
+            >
+              Back
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  );
+}
+
+function ChildInfo() {
+  return (
+    <View style={styles.section}>
+      <Text style={styles.sectionHeader}>Thông tin của bé</Text>
+      <View style={{ display: "flex", flexDirection: "column" }}>
+        <View
+          style={{
+            marginBottom: 6,
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "row",
+            gap: 10,
+          }}
+        >
+          <Ionicons name="body-outline" size={18} />
+          <Text style={{ fontSize: 17 }}>
+            Chiều cao bé: <Text style={{ fontStyle: "italic" }}>140cm</Text>
+          </Text>
+        </View>
+
+        <View
+          style={{
+            marginBottom: 6,
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "row",
+            gap: 10,
+          }}
+        >
+          <Ionicons name="paw-outline" size={18} />
+          <Text style={{ fontSize: 17 }}>
+            Cân nặng bé: <Text style={{ fontStyle: "italic" }}>50kg</Text>
+          </Text>
+        </View>
+        <View
+          style={{
+            marginBottom: 6,
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "row",
+            gap: 10,
+          }}
+        >
+          <Ionicons name="library-outline" size={18} />
+          <Text style={{ fontSize: 17 }}>
+            Chiều cao bàn học:{" "}
+            <Text style={{ fontStyle: "italic" }}>100cm</Text>
+          </Text>
         </View>
       </View>
     </View>
@@ -189,8 +290,6 @@ function ActivitySuggestion() {
   );
 }
 
-const DATA = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"];
-
 function TimePractice() {
   const r = React.useRef(null);
 
@@ -205,6 +304,80 @@ function TimePractice() {
           <Text style={{ fontSize: 20, fontWeight: 700 }}>26</Text>
         </View>
       </View>
+    </View>
+  );
+}
+
+function TeacherStats() {
+  return (
+    <View>
+      <VictoryChart
+        minDomain={{ y: 0 }}
+        maxDomain={{ y: 100 }}
+        domainPadding={{ x: 15 }}
+      >
+        <VictoryBar
+          cornerRadius={{ top: ({ datum }) => 10 }}
+          style={{
+            data: {
+              fill: settings.color.primary,
+              width: 20,
+            },
+            axis: { stroke: "black", strokeWidth: 1 },
+          }}
+          x={(datum) => datum.xLabel}
+          data={[
+            { x: 1, y: 20, y0: 0, xLabel: "Tiết 1" },
+            { x: 2, y: 50, y0: 0, xLabel: "Tiết 2" },
+            { x: 3, y: 30, y0: 0, xLabel: "Tiết 3" },
+            { x: 4, y: 80, y0: 0, xLabel: "Tiết 4" },
+            { x: 5, y: 60, y0: 0, xLabel: "Tiết 5" },
+            { x: 6, y: 30, y0: 0, xLabel: "Tiết 6" },
+          ]}
+        />
+      </VictoryChart>
+    </View>
+  );
+}
+
+const topStudents = [
+  {
+    id: 0,
+    name: "Đinh Lê Dũng",
+  },
+  {
+    id: 1,
+    name: "Đinh Lê Dũng",
+  },
+  {
+    id: 2,
+    name: "Đinh Lê Dũng",
+  },
+  {
+    id: 3,
+    name: "Đinh Lê Dũng",
+  },
+  {
+    id: 4,
+    name: "Đinh Lê Dũng",
+  },
+  {
+    id: 5,
+    name: "Đinh Lê Dũng",
+  },
+];
+
+function TopStudent() {
+  return (
+    <View style={styles.section}>
+      <Text style={styles.sectionHeader}>Top 5 học sinh ngồi sai tư thế</Text>
+      <FlatList
+        data={pageComponents}
+        renderItem={({ item }) => {
+          return <Text>{item.name}</Text>
+        }}
+        keyExtractor={(item, idx) => item.id}
+      />
     </View>
   );
 }
@@ -269,7 +442,7 @@ const styles = StyleSheet.create({
     transform: "translateY(-65%)",
   },
   section: {
-    paddingVertical: "22px",
+    paddingVertical: "10px",
     paddingHorizontal: "20px",
   },
   sectionHeader: {

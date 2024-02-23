@@ -7,6 +7,7 @@ import {
   ScrollView,
   StyleSheet,
   Pressable,
+  ActivityIndicator,
 } from "react-native";
 import {
   VictoryBar,
@@ -60,9 +61,17 @@ export default function Stats() {
     screen.orientation.angle
   );
 
+  const [loading, setLoading] = React.useState(false);
+
   React.useEffect(() => {
     screen.orientation.addEventListener("change", (e) => {
       setScreenAngle(e.target.angle);
+      if (e.target.angle === 90) {
+        setLoading(true);
+        const timeoutId = setTimeout(() => {
+          setLoading(false);
+        }, 1000);
+      }
     });
   }, []);
 
@@ -95,57 +104,84 @@ export default function Stats() {
       )}
 
       {screenAngle === 90 && (
-        <View style={styles.diagramWrapper}>
-          {seatDataMapping(data) &&
-            seatDataMapping(data).map((row, idx1) => {
-              return (
-                <View style={styles.diagramRow} key={idx1}>
-                  <View style={styles.rowItem}>
-                    <Text style={styles.rowText}>
-                      {String.fromCharCode(idx1 + 65)}
-                    </Text>
-                  </View>
+        <View style={{ height: "100%" }}>
+          {loading ? (
+            <View
+              style={{
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 18,
+              }}
+            >
+              <ActivityIndicator
+                size={85}
+                color={settings.color.primary}
+                style={{}}
+              />
 
-                  {row &&
-                    row.map((pair, idx2) => {
-                      return (
-                        <View style={styles.subRow} key={idx2}>
-                          {pair &&
-                            pair.map((item, idx3) => {
-                              return (
-                                <Pressable
-                                  onPress={() => {
-                                    navigate("Student Statistic", {
-                                      id: item.id,
-                                    });
-                                  }}
-                                  key={idx3}
-                                  style={[
-                                    styles.seatItem,
-                                    {
-                                      backgroundColor:
-                                        item.status === "low"
-                                          ? settings.color.classDiagram.low
-                                          : item.status === "medium"
-                                          ? settings.color.classDiagram.medium
-                                          : settings.color.classDiagram.high,
-                                    },
-                                  ]}
-                                >
-                                  <Text style={styles.seatText}>
-                                    {(item.id + 1) % 8 === 0
-                                      ? 8
-                                      : (item.id + 1) % 8}
-                                  </Text>
-                                </Pressable>
-                              );
-                            })}
-                        </View>
-                      );
-                    })}
-                </View>
-              );
-            })}
+              <Text style={{ fontSize: 21, fontWeight: 600 }}>
+                Đang thống kê
+              </Text>
+            </View>
+          ) : (
+            <View style={styles.diagramWrapper}>
+              {seatDataMapping(data) &&
+                seatDataMapping(data).map((row, idx1) => {
+                  return (
+                    <View style={styles.diagramRow} key={idx1}>
+                      <View style={styles.rowItem}>
+                        <Text style={styles.rowText}>
+                          {String.fromCharCode(idx1 + 65)}
+                        </Text>
+                      </View>
+
+                      {row &&
+                        row.map((pair, idx2) => {
+                          return (
+                            <View style={styles.subRow} key={idx2}>
+                              {pair &&
+                                pair.map((item, idx3) => {
+                                  return (
+                                    <Pressable
+                                      onPress={() => {
+                                        navigate("Student Statistic", {
+                                          id: item.id,
+                                        });
+                                      }}
+                                      key={idx3}
+                                      style={[
+                                        styles.seatItem,
+                                        {
+                                          backgroundColor:
+                                            item.status === "low"
+                                              ? settings.color.classDiagram.low
+                                              : item.status === "medium"
+                                              ? settings.color.classDiagram
+                                                  .medium
+                                              : settings.color.classDiagram
+                                                  .high,
+                                        },
+                                      ]}
+                                    >
+                                      <Text style={styles.seatText}>
+                                        {(item.id + 1) % 8 === 0
+                                          ? 8
+                                          : (item.id + 1) % 8}
+                                      </Text>
+                                    </Pressable>
+                                  );
+                                })}
+                            </View>
+                          );
+                        })}
+                    </View>
+                  );
+                })}
+            </View>
+          )}
         </View>
       )}
     </View>

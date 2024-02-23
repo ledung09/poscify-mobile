@@ -2,7 +2,13 @@ import { useRoute } from "@react-navigation/native";
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { Header } from "../../components/page/Header";
-import { VictoryAxis, VictoryChart, VictoryLine } from "victory-native";
+import {
+  VictoryAxis,
+  VictoryBar,
+  VictoryChart,
+  VictoryLine,
+  VictoryTheme,
+} from "victory-native";
 import { settings } from "../../setting/setting";
 
 export default function StatsStudent() {
@@ -42,7 +48,7 @@ export default function StatsStudent() {
             marginBottom: 4,
           }}
         >
-          {account.name}
+          Nguyễn Văn A
         </Text>
         <Text style={{ fontSize: 15, fontWeight: 400, color: "#9a9a9e" }}>
           {account.role}
@@ -72,6 +78,18 @@ export default function StatsStudent() {
         />
         {/* <VictoryAxis dependentAxis tickValues={[1, 2, 3, 4, 5]} />
         <VictoryAxis y={(data) => `${data.y}%`} /> */}
+      </VictoryChart>
+      <VictoryChart theme={VictoryTheme.material} domainPadding={10}>
+        <VictoryBar
+          style={{ data: { fill: "#c43a31" } }}
+          data={[
+            { x: 1, y: 15, xLabel: "Thứ hai" },
+            { x: 2, y: 30, xLabel: "Thứ ba" },
+            { x: 3, y: 60, xLabel: "Thứ tư" },
+            { x: 4, y: 40, xLabel: "Thứ năm" },
+            { x: 5, y: 80, xLabel: "Thứ sáu" },
+          ]}
+        />
       </VictoryChart>
       <Text>{params.id}</Text>
     </View>
