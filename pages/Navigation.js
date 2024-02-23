@@ -12,10 +12,17 @@ import AnalyzeStack from "./Analyze/AnalyzeStack";
 import Setting from "./Setting/Setting";
 import { getAuth, signOut } from "firebase/auth";
 import { auth } from "../firebaseConfig";
+import OutterNonLogin from "./Home/OutterNonLogin";
 
 const Tab = createBottomTabNavigator();
 
 const navData = [
+  {
+    name: "OutterLogin",
+    headerText: "Outter",
+    iconName: "home",
+    component: OutterNonLogin,
+  },
   {
     name: "Home",
     headerText: "Trang chủ",
@@ -42,7 +49,7 @@ const navData = [
   },
   {
     name: "Setting",
-    headerText: "Cài đặt",
+    headerText: "Tài khoản",
     iconName: "person",
     component: Setting,
   },

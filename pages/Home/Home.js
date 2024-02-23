@@ -7,20 +7,26 @@ import {
   TextInput,
   Image,
   FlatList,
+  Dimensions,
+  Pressable,
 } from "react-native";
 import { settings } from "../../setting/setting";
 import { Ionicons } from "@expo/vector-icons";
 import { ProgressBar } from "../../components/ui/ProgressBar";
 import { useAccount } from "../../components/hooks/useAccount";
-import Carousel from "react-native-reanimated-carousel";
 import {
   VictoryAxis,
   VictoryBar,
   VictoryChart,
   VictoryLine,
 } from "victory-native";
+import Carousel from "react-native-reanimated-carousel";
 
 const pageComponents = [
+  {
+    id: -3,
+    component: TimePractice,
+  },
   {
     id: -2,
     component: TopStudent,
@@ -266,7 +272,7 @@ function ActivitySuggestion() {
         <Text
           style={{
             fontSize: 16,
-            color: settings.color.gray,
+            color: "rgb(121, 121, 121)",
             fontWeight: 500,
           }}
         >
@@ -287,6 +293,7 @@ function ActivitySuggestion() {
             width: "120px",
             height: "120px",
             objectFit: "contain",
+            marginRight: 10,
           }}
           source={require("../../assets/image/HomePage/running.jpg")}
         />
@@ -294,22 +301,68 @@ function ActivitySuggestion() {
     </View>
   );
 }
+function Index() {
+  const width = Dimensions.get("window").width;
+  return (
+    <View style={{ flex: 1 }}>
+      <Carousel
+        loop
+        width={width}
+        height={width / 2}
+        autoPlay={true}
+        data={[...new Array(6).keys()]}
+        scrollAnimationDuration={1000}
+        onSnapToItem={(index) => console.log("current index:", index)}
+        renderItem={({ index }) => (
+          <Pressable
+            style={{ height: 10, width: 10, backgroundColor: "red" }}
+          />
+        )}
+      />
+    </View>
+  );
+}
 
 function TimePractice() {
   const r = React.useRef(null);
 
-  const [loop, setLoop] = React.useState(false);
+  const { width, height } = Dimensions.get("screen");
 
   return (
-    <View style={styles.section}>
-      <Text style={styles.sectionHeader}>Thời gian tập cùng bé</Text>
-      <View style={{ display: "flex", flexDirection: "row", marginTop: 4 }}>
-        <View style={styles.dateBox}>
-          <Text>Sat</Text>
-          <Text style={{ fontSize: 20, fontWeight: 700 }}>26</Text>
-        </View>
+    <>
+      <View style={styles.section}>
+        <Text style={styles.sectionHeader}>Thời gian tập cùng bé</Text>
+        {/* <View style={{ display: "flex", flexDirection: "row", marginTop: 4 }}>
+          <View style={styles.dateBox}>
+            <Text>Sat</Text>
+            <Text style={{ fontSize: 20, fontWeight: 700 }}>26</Text>
+          </View>
+        </View> */}
+        {/* <Index /> */}
       </View>
-    </View>
+      <View style={{ flex: 1 }}>
+        <FlatList
+          style={{ width: "100%" }}
+          data={[1, 2, 3, 4, 5]}
+          renderItem={({ item, index }) => {
+            return (
+              <View
+                style={{
+                  width,
+                  height: 20,
+                }}
+              >
+                <Text>{index}</Text>
+              </View>
+            );
+          }}
+          horizontal
+          pagingEnabled
+          snapToAlignment="center"
+          showsHorizontalScrollIndicator={false}
+        />
+      </View>
+    </>
   );
 }
 
@@ -451,7 +504,7 @@ const styles = StyleSheet.create({
     position: "relative",
     borderBottomLeftRadius: "20px",
     borderBottomRightRadius: "20px",
-    backgroundColor: settings.color.primary,
+    backgroundColor: "rgb(255, 123, 66)",
     marginBottom: "28px",
   },
   userInfo: {
