@@ -13,7 +13,12 @@ import { Ionicons } from "@expo/vector-icons";
 import { ProgressBar } from "../../components/ui/ProgressBar";
 import { useAccount } from "../../components/hooks/useAccount";
 import Carousel from "react-native-reanimated-carousel";
-import { VictoryAxis, VictoryBar, VictoryChart } from "victory-native";
+import {
+  VictoryAxis,
+  VictoryBar,
+  VictoryChart,
+  VictoryLine,
+} from "victory-native";
 
 const pageComponents = [
   {
@@ -310,44 +315,84 @@ function TimePractice() {
 
 function TeacherStats() {
   return (
-    <View>
-      <VictoryChart
-        minDomain={{ y: 0 }}
-        maxDomain={{ y: 100 }}
-        domainPadding={{ x: 15 }}
-      >
-        <VictoryBar
-          cornerRadius={{ top: ({ datum }) => 10 }}
-          style={{
-            data: {
-              fill: settings.color.primary,
-              width: 20,
-            },
-            axis: { stroke: "black", strokeWidth: 1 },
-          }}
-          x={(datum) => datum.xLabel}
-          data={[
-            { x: 1, y: 20, y0: 0, xLabel: "Tiết 1" },
-            { x: 2, y: 50, y0: 0, xLabel: "Tiết 2" },
-            { x: 3, y: 30, y0: 0, xLabel: "Tiết 3" },
-            { x: 4, y: 80, y0: 0, xLabel: "Tiết 4" },
-            { x: 5, y: 60, y0: 0, xLabel: "Tiết 5" },
-            { x: 6, y: 30, y0: 0, xLabel: "Tiết 6" },
+    <>
+      <View style={{ paddingVertical: 15 }}>
+        <Text
+          style={[
+            styles.sectionHeader,
+            { marginBottom: 0, paddingHorizontal: 20, marginBottom: "-20px" },
           ]}
-        />
-      </VictoryChart>
-    </View>
+        >
+          Tỉ lệ ngồi sai theo tiết học
+        </Text>
+        <VictoryChart
+          minDomain={{ y: 0 }}
+          maxDomain={{ y: 100 }}
+          domainPadding={{ x: 15 }}
+        >
+          <VictoryBar
+            title="this is"
+            cornerRadius={{ top: ({ datum }) => 10 }}
+            style={{
+              data: {
+                fill: settings.color.primary,
+                width: 20,
+              },
+            }}
+            x={(datum) => datum.xLabel}
+            data={[
+              { x: 1, y: 20, y0: 0, xLabel: "Tiết 1" },
+              { x: 2, y: 50, y0: 0, xLabel: "Tiết 2" },
+              { x: 3, y: 30, y0: 0, xLabel: "Tiết 3" },
+              { x: 4, y: 80, y0: 0, xLabel: "Tiết 4" },
+              { x: 5, y: 60, y0: 0, xLabel: "Tiết 5" },
+              { x: 6, y: 30, y0: 0, xLabel: "Tiết 6" },
+            ]}
+          />
+        </VictoryChart>
+      </View>
+      <View style={{ paddingBottom: 15 }}>
+        <Text
+          style={[
+            styles.sectionHeader,
+            { marginBottom: 0, paddingHorizontal: 20, marginBottom: "-20px" },
+          ]}
+        >
+          Tỉ lệ ngồi sai theo ngày trong tuần
+        </Text>
+        <VictoryChart minDomain={{ y: 0 }} maxDomain={{ y: 100 }}>
+          <VictoryLine
+            interpolation="natural"
+            style={{
+              data: {
+                stroke: settings.color.primary,
+                strokeWidth: 5,
+                strokeLinecap: "round",
+              },
+            }}
+            x={(datum) => datum.xLabel}
+            data={[
+              { x: 1, y: 15, xLabel: "Thứ hai" },
+              { x: 2, y: 30, xLabel: "Thứ ba" },
+              { x: 3, y: 60, xLabel: "Thứ tư" },
+              { x: 4, y: 40, xLabel: "Thứ năm" },
+              { x: 5, y: 80, xLabel: "Thứ sáu" },
+            ]}
+          />
+        </VictoryChart>
+      </View>
+    </>
   );
 }
 
 const topStudents = [
   {
     id: 0,
-    name: "Đinh Lê Dũng",
+    name: "Hoàng Hưng",
   },
   {
     id: 1,
-    name: "Đinh Lê Dũng",
+    name: "Hoàng Hưng",
   },
   {
     id: 2,
@@ -359,22 +404,37 @@ const topStudents = [
   },
   {
     id: 4,
-    name: "Đinh Lê Dũng",
-  },
-  {
-    id: 5,
-    name: "Đinh Lê Dũng",
+    name: "Nguyễn Văn A",
   },
 ];
 
 function TopStudent() {
   return (
     <View style={styles.section}>
-      <Text style={styles.sectionHeader}>Top 5 học sinh ngồi sai tư thế</Text>
+      <Text style={styles.sectionHeader}>Top học sinh ngồi sai tư thế</Text>
       <FlatList
-        data={pageComponents}
+        data={topStudents}
         renderItem={({ item }) => {
-          return <Text>{item.name}</Text>
+          return (
+            <View
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                height: 50,
+                alignItems: "center",
+                gap: 20,
+              }}
+            >
+              <Text style={{ color: settings.color.gray, fontSize: 15 }}>
+                {item.id + 1}
+              </Text>
+              <Text style={{ fontSize: 17, fontWeight: 600, width: "40%" }}>
+                {item.name}
+              </Text>
+              <ProgressBar value={80} color={"high"} />
+              <Text style={{ fontWeight: 500, fontSize: 15 }}>80%</Text>
+            </View>
+          );
         }}
         keyExtractor={(item, idx) => item.id}
       />
