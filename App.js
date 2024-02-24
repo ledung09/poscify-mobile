@@ -87,7 +87,7 @@ function MainPage() {
   });
 
   return (
-    <>{!account ? <NonSignInHome loginFail={account} /> : <Navigation />}</>
+    <>{!account ? <NonSignInHome loginFail={loginFail} /> : <Navigation />}</>
   );
 }
 
@@ -104,7 +104,7 @@ function NonSignInHome({ loginFail }) {
           justifyContent: "center",
           zIndex: 100,
           marginTop: 20,
-          height: "calc(100% - 400px)",
+          height: "calc(100% - 410px)",
         }}
       >
         <Image
