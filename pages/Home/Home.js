@@ -199,14 +199,14 @@ const childInfo = [
 
 function ChildInfo() {
   return (
-    <View style={styles.section}>
+    <View style={[styles.section, { marginTop: 10 }]}>
       <View
         style={{
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
           gap: 12,
-          marginBottom: 13,
+          marginBottom: 15,
         }}
       >
         <Text style={{ fontSize: 19, fontWeight: 700 }}>Thông tin của bé</Text>
@@ -250,9 +250,9 @@ function ActivitySuggestion() {
         flexDirection: "row",
         paddingHorizontal: 25,
         paddingVertical: 15,
-        borderRadius: 10,
-        marginTop: 10,
-        marginBottom: 20,
+        borderRadius: 5,
+        marginTop: 3,
+        marginBottom: 17,
       }}
     >
       <View style={{ flex: 1 }}>
@@ -557,11 +557,12 @@ const styles = StyleSheet.create({
     flex: 1,
     display: "flex",
     flexDirection: "column",
+    justifyContent: "center",
   },
   profileText: {
     fontSize: "21px",
     fontWeight: 600,
-    marginBottom: "5px",
+    marginBottom: "4px",
     color: "white",
   },
   inputWrapper: {

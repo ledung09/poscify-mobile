@@ -42,6 +42,8 @@ function App() {
 }
 
 function MainPage() {
+  const [accounted, setAccounted] = React.useState(false);
+
   const { account, setAccount } = useAccount();
 
   const [loginFail, setLoginFail] = React.useState(false);
@@ -87,12 +89,19 @@ function MainPage() {
   });
 
   return (
-    <>{!account ? <NonSignInHome loginFail={loginFail} /> : <Navigation />}</>
+    <>
+      {!accounted ? (
+        <NonSignInHome loginFail={loginFail} setAccounted={setAccounted} />
+      ) : (
+        <Navigation />
+      )}
+    </>
   );
 }
 
-function NonSignInHome({ loginFail }) {
+function NonSignInHome({ loginFail, setAccounted }) {
   const auth = getAuth();
+  const { account, setAccount } = useAccount();
 
   return (
     <View style={styles.container}>
@@ -164,8 +173,16 @@ function NonSignInHome({ loginFail }) {
 
         <Pressable
           onPress={async () => {
-            const provider = new GoogleAuthProvider();
-            signInWithRedirect(auth, provider);
+            // const provider = new GoogleAuthProvider();
+            // signInWithRedirect(auth, provider);
+            setAccounted(true);
+            setAccount({
+              name: "Dũng Đinh Lê",
+              email: "nocopyrightgamingmusic123@gmail.com",
+              image:
+                "https://lh3.googleusercontent.com/a/ACg8ocKGPfQEdyVncTNG2I9UUfpGqWDrAePzRBZeGsEx1XnZnlw=s96-c",
+              role: "TEACHER",
+            });
           }}
           style={{
             display: "flex",

@@ -15,98 +15,7 @@ import React from "react";
 import { settings } from "../../setting/setting";
 import InExercise from "../../components/page/InExercise";
 import { useAccount } from "../../components/hooks/useAccount";
-
-const data = [
-  {
-    id: 0,
-    image: "https://illustoon.com/photo/2045.png",
-    title: "Push up",
-    des: "100 Push up a day",
-    percent: 45,
-    difficulty: "easy",
-    time: 10,
-  },
-  {
-    id: 1,
-    image:
-      "https://img.freepik.com/free-vector/cartoon-character-sticker-with-girl-jogging-white-background_1308-79976.jpg?size=626&ext=jpg&ga=GA1.1.1518270500.1701388800&semt=ais",
-    title: "Chạy bộ",
-    des: "100 Push up a day",
-    percent: 45,
-    difficulty: "easy",
-    time: 12,
-  },
-  {
-    id: 2,
-    image:
-      "https://static.vecteezy.com/system/resources/previews/005/103/441/non_2x/mom-and-son-do-yoga-doing-the-dog-face-down-pose-vector.jpg",
-    title: "Push up",
-    des: "100 Push up a day",
-    percent: 45,
-    difficulty: "hard",
-    time: 8,
-  },
-  {
-    id: 3,
-    image:
-      "https://prod-media.coolaustralia.org/wp-content/uploads/2022/02/03160408/Active-Kid-1.png",
-    title: "Push up",
-    des: "100 Push up a day",
-    percent: 45,
-    difficulty: "medium",
-    time: 10,
-  },
-  {
-    id: 4,
-    image:
-      "https://media.istockphoto.com/vectors/smiling-girl-practicing-yoga-and-doing-king-cobra-pose-on-training-vector-id1026132986?k=6&m=1026132986&s=170667a&w=0&h=T5lNY_myPndZsJk7d-Z5xTb1Qkz9pNiwImi6PX1r0N0=",
-    title: "Push up",
-    des: "100 Push up a day",
-    percent: 45,
-    difficulty: "hard",
-    time: 11,
-  },
-  {
-    id: 5,
-    image:
-      "https://th.bing.com/th/id/OIP.qTb8CBWn-EuxDdsIkA0q8wHaF_?w=826&h=669&rs=1&pid=ImgDetMain",
-    title: "Push up",
-    des: "100 Push up a day",
-    percent: 45,
-    difficulty: "medium",
-    time: 9,
-  },
-  {
-    id: 6,
-    image:
-      "https://img.freepik.com/premium-vector/happy-cute-little-kid-boy-girl-yoga-pose_97632-2863.jpg?w=900",
-    title: "Push up",
-    des: "100 Push up a day",
-    percent: 45,
-    difficulty: "hard",
-    time: 7,
-  },
-  {
-    id: 7,
-    image:
-      "https://thumbs.dreamstime.com/b/happy-cute-little-kid-boy-girl-do-yoga-pose-188143153.jpg",
-    title: "Push up",
-    des: "100 Push up a day",
-    percent: 45,
-    difficulty: "medium",
-    time: 12,
-  },
-  {
-    id: 8,
-    image:
-      "https://img.freepik.com/premium-vector/kid-morning-workout-healthy-happy-boy-exercise-isolated-white-background_533410-1001.jpg",
-    title: "Push up",
-    des: "100 Push up a day",
-    percent: 45,
-    difficulty: "easy",
-    time: 9,
-  },
-];
+import { exercises } from "../../data/exercise";
 
 const diffList = [
   { id: 0, en: "easy", vi: "Dễ" },
@@ -142,6 +51,7 @@ export default function Practice() {
                 borderRadius: 10,
                 backgroundColor:
                   diff === item.en ? settings.color.primary : "white",
+                borderWidth: diff === item.en ? 0 : 1,
               }}
             >
               <Text
@@ -158,7 +68,7 @@ export default function Practice() {
       </View>
       <FlatList
         keyExtractor={(item, idx) => item.id}
-        data={data}
+        data={exercises}
         renderItem={({ item, index }) => {
           if (item.difficulty === diff) return <ExerciseItem item={item} />;
           else return <></>;
@@ -258,8 +168,8 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   image: {
-    width: "95px",
-    height: "80px",
+    width: "100px",
+    height: "85px",
     borderRadius: "15px",
     objectFit: "cover",
   },

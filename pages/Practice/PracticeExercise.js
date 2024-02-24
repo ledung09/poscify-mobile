@@ -8,6 +8,7 @@ import {
   ScrollView,
   Pressable,
   Button,
+  FlatList,
 } from "react-native";
 import { Header } from "../../components/page/Header";
 import { settings } from "../../setting/setting";
@@ -62,7 +63,7 @@ export default function PracticeExercise() {
         }}
       >
         <Iframe
-          uri="https://www.youtube.com/embed/ET8rdp2b1a4"
+          uri="http://www.youtube.com/embed/RHobTtOv1Qo?si=5Iob9xaehekEJoPV&amp;start=9&autoplay=1&mute=1"
           style={{
             width: "100%",
             height: "200px",
@@ -80,9 +81,7 @@ export default function PracticeExercise() {
               gap: 12,
             }}
           >
-            <Text style={{ fontSize: 23, fontWeight: 700 }}>
-              Workout Exercise 1
-            </Text>
+            <Text style={{ fontSize: 23, fontWeight: 700 }}>Chạy bộ</Text>
 
             {!bookmarked ? (
               <Ionicons name="bookmark-outline" size={16} />
@@ -101,7 +100,7 @@ export default function PracticeExercise() {
               fontWeight: 400,
             }}
           >
-            Workout for 6 - 7
+            Bài tập cho trẻ tư 6 - 15 tuổi.
           </Text>
         </View>
 
@@ -109,13 +108,17 @@ export default function PracticeExercise() {
           style={{
             display: "flex",
             flexDirection: "row",
-            gap: 10,
+            gap: 12,
             marginTop: 18,
             marginBottom: 25,
           }}
         >
-          <InfoPill iconName={"hourglass-outline"} text={"15 phút"} />
-          <InfoPill iconName={"heart-circle-outline"} text={"5 reps/ngày"} />
+          <InfoPill iconName={"hourglass-outline"} text={"9 phút"} />
+          <InfoPill iconName={"podium-outline"} text={"Dễ"} />
+          <InfoPill
+            iconName={"reload-circle-outline"}
+            text={"2 - 3 lần/ngày"}
+          />
         </View>
 
         <View>
@@ -123,55 +126,122 @@ export default function PracticeExercise() {
             style={{
               fontSize: 19,
               fontWeight: 700,
-              marginBottom: 6,
+              marginBottom: 10,
             }}
           >
-            Mô tả
+            Giới thiệu
           </Text>
           <Text
             style={{
               fontSize: 17,
-              color: "#C4C4C4",
+              color: "#A0A0A0",
+              textAlign: "justify",
             }}
           >
-            Hít đất hay còn được gọi là chống đẩy, nó có tên tiếng Anh là Push
-            Up và đây là một bài tập thể dục thể hình rất cơ bản, được nhiều
-            người áp dụng tập luyện. Theo các HLV thể hình, hít đất là một bài
-            tập dạng Compound, tác động lên nhóm cơ chính là ngực và các nhóm cơ
-            phụ gồm cơ vai, cơ tay sau, cơ tay trước. Luyện tập hít đất đúng
+            Chạy bộ là một trong những bài tập đơn giản, hiệu quả và dễ tiếp cận
+            nhất hiện nay. Không cần dụng cụ đắt tiền, không cần đến phòng tập,
+            chỉ với đôi giày phù hợp, bạn đã có thể bắt đầu hành trình rèn luyện
+            sức khỏe và khám phá bản thân.
           </Text>
           <Text
             style={{
+              marginTop: 20,
               fontSize: 19,
               fontWeight: 700,
-              marginBottom: 6,
+              marginBottom: 10,
             }}
           >
-            Chức năng
+            Lợi ích
           </Text>
           <Text
             style={{
               fontSize: 17,
-              color: "#C4C4C4",
+              color: "#A0A0A0",
+              textAlign: "justify",
+              marginBottom: 10,
             }}
           >
-            Hít đất hay còn được gọi là chống đẩy, nó có tên tiếng Anh là Push
-            Up và đây là một bài tập thể dục thể hình rất cơ bản, được nhiều
-            người áp dụng tập luyện. Theo các HLV thể hình, hít đất là một bài
-            tập dạng Compound, tác động lên nhóm cơ chính là ngực và các nhóm cơ
-            phụ gồm cơ vai, cơ tay sau, cơ tay trước. Luyện tập hít đất đúng
-            cách và thường xuyên không chỉ giúp rèn luyện sức khỏe mà nó còn
-            giúp các nhóm cơ phát triển to, vạm vỡ hơn và săn chắc tự nhiên. Tập
-            hít đất sẽ giúp nam giới sớm sở hữu cho mình bộ ngực có kích thước
-            to rộng, săn chắc và giúp nữ giới tăng kích thước vòng 1 của mình
-            lên nhanh chóng. Thực tế, khi áp dụng bài tập này thì bạn có thể tập
-            tay không hoặc sử dụng dụng cụ hít đất và nó phù hợp áp dụng cho mọi
-            đối tượng, từ nam đến nữ, từ người trẻ đến người già,...
+            Chạy bộ mang đến vô số lợi ích cho sức khỏe thể chất và tinh thần,
+            bao gồm:
           </Text>
+          <FlatList
+            data={[
+              {
+                key: "Tăng cường sức khỏe tim mạch, giảm nguy cơ mắc các bệnh tim mạch, đột quỵ.",
+              },
+              {
+                key: "Cải thiện sức khỏe hệ hô hấp, tăng cường dung tích phổi.",
+              },
+              { key: "Giúp xương khớp chắc khỏe, giảm nguy cơ loãng xương." },
+              {
+                key: "Tăng cường sức mạnh cơ bắp, đặc biệt là cơ bắp phần thân dưới.",
+              },
+            ]}
+            renderItem={({ item }) => (
+              <View style={{ marginBottom: 5 }}>
+                <Text
+                  style={{
+                    fontSize: 17,
+                    color: "#A0A0A0",
+                    textAlign: "justify",
+                  }}
+                >
+                  &#10146; {item.key}
+                </Text>
+              </View>
+            )}
+          />
+          <Text
+            style={{
+              marginTop: 20,
+              fontSize: 19,
+              fontWeight: 700,
+              marginBottom: 10,
+            }}
+          >
+            Lưu ý khi thực hiện bài tập
+          </Text>
+          <Text
+            style={{
+              fontSize: 17,
+              color: "#A0A0A0",
+              textAlign: "justify",
+              marginBottom: 10,
+            }}
+          >
+            Chạy bộ là một bài tập đơn giản, tuy nhiên để đạt được hiệu quả
+            và tránh các chấn thương không mong muốn, người tập cần tuân theo
+            những lưu ý sau:
+          </Text>
+          <FlatList
+            data={[
+              {
+                key: "Nên khởi động kỹ trước khi chạy bộ để tránh chấn thương.",
+              },
+              {
+                key: "Chọn giày chạy phù hợp để bảo vệ đôi chân và hỗ trợ vận động hiệu quả.",
+              },
+              { key: "Uống đủ nước trước, trong và sau khi chạy bộ." },
+              { key: "Lắng nghe cơ thể, không nên tập luyện quá sức." },
+            ]}
+            renderItem={({ item }) => (
+              <View style={{ marginBottom: 5 }}>
+                <Text
+                  style={{
+                    fontSize: 17,
+                    color: "#A0A0A0",
+                    textAlign: "justify",
+                  }}
+                >
+                  &#10146; {item.key}
+                </Text>
+              </View>
+            )}
+          />
         </View>
         <View
           style={{
-            marginTop: 30,
+            marginTop: 20,
             border: "1px solid #C8C8C8",
             display: "flex",
             flexDirection: "row",
@@ -179,7 +249,7 @@ export default function PracticeExercise() {
             paddingVertical: 10,
             paddingHorizontal: 15,
             borderRadius: 20,
-            gap: 12,
+            gap: 18,
           }}
         >
           <Ionicons
@@ -188,8 +258,8 @@ export default function PracticeExercise() {
             color={settings.color.primary}
           />
           <View style={styles.sectionInfo}>
-            <Text style={styles.sectionTitle}>Set alarm</Text>
-            <Text style={styles.sectionDes}>10AM</Text>
+            <Text style={styles.sectionTitle}>Đặt thông báo</Text>
+            <Text style={styles.sectionDes}>10 AM</Text>
           </View>
           <Switch
             value={isSwitchOn}
@@ -226,7 +296,7 @@ export default function PracticeExercise() {
           else
             setInExercise({
               id: id,
-              name: "Hít đất",
+              name: "Chạy bộ",
               startTime: new Date(),
             });
         }}
