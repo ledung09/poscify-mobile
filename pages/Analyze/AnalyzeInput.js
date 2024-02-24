@@ -3,12 +3,14 @@ import { settings } from "../../setting/setting";
 import { Button } from "../../components/ui/Button";
 import { useNavigation } from "@react-navigation/native";
 import { Header } from "../../components/page/Header";
+import InExercise from "../../components/page/InExercise";
 
 export default function AnalyzeInput() {
   const { navigate } = useNavigation();
 
   return (
     <View style={styles.container}>
+      <InExercise />
       <Header title="Phân tích dáng ngồi" goBackShown={false} />
       <View style={styles.wrapper}>
         <Image
@@ -52,8 +54,8 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 40,
     fontWeight: "bold",
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: 18,
+    marginBottom: 18,
   },
   description: {
     fontWeight: "600",
@@ -61,6 +63,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     maxWidth: "85%",
     lineHeight: "1.3",
-    marginBottom: "30px",
+    marginBottom: "50px",
   },
 });

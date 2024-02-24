@@ -7,7 +7,9 @@ const Stack = createNativeStackNavigator();
 
 export default function PracticeStack() {
   return (
-    <Stack.Navigator screenOptions={{ headerTitleAlign: "center", headerShown: false }}>
+    <Stack.Navigator
+      screenOptions={{ headerTitleAlign: "center", headerShown: false }}
+    >
       <Stack.Screen
         name="Practice"
         component={Practice}

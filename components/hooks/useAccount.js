@@ -12,9 +12,10 @@ export function useAccount() {
 
 export function AccountProvider({ children }) {
   const [account, setAccount] = React.useState(null);
+  const [inExercise, setInExercise] = React.useState(null)
 
   return (
-    <accountContext.Provider value={{ account, setAccount }}>
+    <accountContext.Provider value={{ account, setAccount, inExercise, setInExercise }}>
       {children}
     </accountContext.Provider>
   );

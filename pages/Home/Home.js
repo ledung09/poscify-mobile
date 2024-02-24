@@ -20,7 +20,7 @@ import {
   VictoryChart,
   VictoryLine,
 } from "victory-native";
-import Carousel from "react-native-reanimated-carousel";
+import InExercise from "../../components/page/InExercise";
 
 const pageComponents = [
   {
@@ -58,6 +58,7 @@ export default function Home() {
 
   return (
     <View style={styles.container}>
+      <InExercise />
       <ProfileSecion />
       <FlatList
         data={pageComponents}
@@ -201,11 +202,22 @@ function SeatPostureAnalyze() {
 function ChildInfo() {
   return (
     <View style={styles.section}>
-      <Text style={styles.sectionHeader}>Thông tin của bé</Text>
+      <View
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          gap: 12,
+          marginBottom: 15,
+        }}
+      >
+        <Text style={{ fontSize: 19, fontWeight: 700 }}>Thông tin của bé</Text>
+        <Ionicons style={{ marginTop: 2 }} name="create-outline" size={18} />
+      </View>
       <View style={{ display: "flex", flexDirection: "column" }}>
         <View
           style={{
-            marginBottom: 6,
+            marginBottom: 10,
             display: "flex",
             alignItems: "center",
             flexDirection: "row",
@@ -220,7 +232,7 @@ function ChildInfo() {
 
         <View
           style={{
-            marginBottom: 6,
+            marginBottom: 10,
             display: "flex",
             alignItems: "center",
             flexDirection: "row",
@@ -234,7 +246,7 @@ function ChildInfo() {
         </View>
         <View
           style={{
-            marginBottom: 6,
+            marginBottom: 10,
             display: "flex",
             alignItems: "center",
             flexDirection: "row",
@@ -324,8 +336,6 @@ function Index() {
 }
 
 function TimePractice() {
-  const r = React.useRef(null);
-
   const { width, height } = Dimensions.get("screen");
 
   return (
@@ -349,9 +359,9 @@ function TimePractice() {
               <View
                 style={{
                   width,
-                  height: 20,
                 }}
               >
+                <Text>Thứ bảy. 20/11/2023</Text>
                 <Text>{index}</Text>
               </View>
             );
@@ -561,7 +571,7 @@ const styles = StyleSheet.create({
   sectionHeader: {
     fontSize: 19,
     fontWeight: 700,
-    marginBottom: 12,
+    marginBottom: 13,
   },
   sectionImageLeft: {
     width: 65,

@@ -16,8 +16,11 @@ import { Ionicons } from "@expo/vector-icons";
 import { Iframe } from "@bounceapp/iframe";
 
 import { Switch } from "react-native-paper";
+import { useAccount } from "../../components/hooks/useAccount";
+import InExercise from "../../components/page/InExercise";
 
 export default function PracticeExercise() {
+  const { inExercise, setInExercise } = useAccount();
   const navigation = useNavigation();
   const { params } = useRoute();
   const { id, bookmarked } = params;
@@ -47,6 +50,7 @@ export default function PracticeExercise() {
 
   return (
     <View style={styles.container}>
+      <InExercise inner={true} />
       <Header title="Chi tiết bài tập" />
       <View
         style={{
@@ -165,8 +169,60 @@ export default function PracticeExercise() {
           />
         </View>
       </ScrollView>
+      <Pressable
+        style={[
+          {
+            backgroundColor: settings.color.primary,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "row",
+            gap: 8,
+            borderRadius: 15,
+            paddingHorizontal: 22,
+            paddingVertical: 15,
+            marginVertical: 15,
+            marginHorizontal: 10,
+          },
+          {
+            backgroundColor:
+              inExercise && inExercise.id !== id
+                ? "#C8C8C8"
+                : settings.color.primary,
+            pointerEvents: inExercise && inExercise.id !== id ? "none" : "auto",
+          },
+        ]}
+        onPress={() => {
+          if (inExercise) setInExercise(null);
+          else
+            setInExercise({
+              id: 0,
+              name: "Hít đất",
+              startTime: new Date(),
+            });
+        }}
+      >
+        <Ionicons
+          name={
+            inExercise
+              ? inExercise.id === id
+                ? "stop-circle-outline"
+                : "alert-circle-outline"
+              : "stopwatch-outline"
+          }
+          size={23}
+          color="white"
+        />
+        <Text style={styles.btnText}>
+          {inExercise
+            ? inExercise.id === id
+              ? "Dừng tính giờ"
+              : `Hãy dừng thời gian bài tập ${inExercise.name}`
+            : "Bắt đầu tính giờ"}
+        </Text>
+      </Pressable>
 
-      <Text>{params.id}</Text>
+      {/* <Text>{params.id}</Text> */}
     </View>
   );
 }
@@ -191,5 +247,10 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: "#192126",
     opacity: "0.5",
+  },
+  btnText: {
+    fontSize: 18.5,
+    fontWeight: "600",
+    color: "white",
   },
 });

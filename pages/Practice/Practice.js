@@ -13,6 +13,8 @@ import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import { settings } from "../../setting/setting";
+import InExercise from "../../components/page/InExercise";
+import { useAccount } from "../../components/hooks/useAccount";
 
 const data = [
   {
@@ -69,11 +71,12 @@ const data = [
 export default function Practice({ navigation }) {
   return (
     <View style={styles.container}>
+      <InExercise inner={true} />
       <Header title="Bài tập" goBackShown={false} style={{ marginBottom: 5 }} />
       <FlatList
         keyExtractor={(item, idx) => item.id}
         data={data}
-        renderItem={({ item }) => {
+        renderItem={({ item, index }) => {
           return <ExerciseItem item={item} />;
         }}
       />
@@ -82,12 +85,30 @@ export default function Practice({ navigation }) {
 }
 
 function ExerciseItem({ item }) {
+  const { inExercise } = useAccount();
   const { navigate } = useNavigation();
   const [bookmarked, setBookmarked] = React.useState(false);
 
   return (
     <Pressable
-      style={styles.section}
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        gap: "20px",
+        marginBottom: "15px",
+        alignItems: "center",
+        marginHorizontal: 15,
+        padding: 15,
+        border:
+          inExercise && inExercise.id === item.id
+            ? `3px solid ${settings.color.primary}`
+            : "1px solid #C2C2C2",
+        borderRadius: 20,
+        backgroundColor:
+          inExercise && inExercise.id === item.id
+            ? settings.color.secondary
+            : "white",
+      }}
       onPress={() => {
         {
           navigate("Exercise", { id: item.id, bookmarked });

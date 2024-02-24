@@ -32,31 +32,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     gap: 12,
-    borderRadius: 8,
-    paddingHorizontal: 20,
-    paddingVertical: 15,
+    borderRadius: 15,
+    paddingHorizontal: 22,
+    paddingVertical: 13,
   },
   text: {
-    fontSize: 19,
-    fontWeight: "500",
+    fontSize: 18.5,
+    fontWeight: "600",
     color: "white",
-  },
-
-  barOutter: {
-    backgroundColor: settings.color.lightGray,
-    height: "14px",
-    width: "100%",
-    borderRadius: "5px",
-  },
-  barInner: {
-    backgroundColor: settings.color.primary,
-    height: "14px",
-    borderRadius: "5px",
-  },
-  barText: {
-    fontSize: "10px",
-    marginVertical: "auto",
-    marginHorizontal: "auto",
-    fontWeight: "700",
   },
 });

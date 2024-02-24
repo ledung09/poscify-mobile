@@ -12,6 +12,7 @@ import PercentCircle from "../../components/ui/PercentCircle";
 import { Header } from "../../components/page/Header";
 import { useNavigation } from "@react-navigation/native";
 import { settings } from "../../setting/setting";
+import InExercise from "../../components/page/InExercise";
 
 export default function AnalyzeResult() {
   const navigation = useNavigation();
@@ -45,6 +46,7 @@ export default function AnalyzeResult() {
 
   return (
     <View style={{ backgroundColor: "white", height: "100%" }}>
+      <InExercise />
       <Header title="Kết quả phân tích" />
       {loading ? (
         <View

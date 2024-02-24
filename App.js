@@ -87,6 +87,7 @@ function MainPage() {
 
   return (
     <>
+      
       <Navigation />
       {/* {!account ? <NonSignInHome loginFail={account} /> : <Navigation />} */}
     </>

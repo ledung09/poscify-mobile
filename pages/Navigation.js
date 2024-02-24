@@ -1,4 +1,4 @@
-import { View, Text, Button } from "react-native";
+import { View, Text, Button, Pressable } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -13,6 +13,9 @@ import Setting from "./Setting/Setting";
 import { getAuth, signOut } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import OutterNonLogin from "./Home/OutterNonLogin";
+import { useDate } from "../components/hooks/useDate";
+import { getTimeDifference } from "../util/util";
+import InExercise from "../components/page/InExercise";
 
 const Tab = createBottomTabNavigator();
 
@@ -56,6 +59,8 @@ const navData = [
 ];
 
 export default function Navigation() {
+  
+
   return (
     <View style={{ width: "100%", height: "100%" }}>
       <NavigationContainer>
