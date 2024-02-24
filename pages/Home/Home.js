@@ -24,10 +24,10 @@ import InExercise from "../../components/page/InExercise";
 import { Icon } from "react-native-paper";
 
 const pageComponents = [
-  {
-    id: 0,
-    component: SeatPostureAnalyze,
-  },
+  // {
+  //   id: 0,
+  //   component: SeatPostureAnalyze,
+  // },
   {
     id: 1,
     component: ChildInfo,
@@ -112,8 +112,8 @@ function ProfileSecion() {
 }
 
 const postureInfo = [
-  { id: 0, name: "Mắt", percent: 40, color: "low" },
-  { id: 1, name: "Cổ", percent: 85, color: "high" },
+  { id: 0, name: "Mắt", percent: 40, color: "high" },
+  { id: 1, name: "Cổ", percent: 85, color: "low" },
   { id: 2, name: "Lưng", percent: 60, color: "medium" },
 ];
 
@@ -408,7 +408,7 @@ function TeacherStats() {
             { marginBottom: 0, paddingHorizontal: 20, marginBottom: "-20px" },
           ]}
         >
-          Tỉ lệ ngồi sai theo tiết học
+          Thời gian phụ huynh tập cùng bé
         </Text>
         <VictoryChart
           minDomain={{ y: 0 }}

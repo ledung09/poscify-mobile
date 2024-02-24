@@ -62,7 +62,7 @@ export default function PracticeExercise() {
         }}
       >
         <Iframe
-          uri="https://www.youtube.com/embed/cqyziA30whE?&autoplay=1&mute=1"
+          uri="https://www.youtube.com/embed/ET8rdp2b1a4"
           style={{
             width: "100%",
             height: "200px",
@@ -134,10 +134,39 @@ export default function PracticeExercise() {
               color: "#C4C4C4",
             }}
           >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil
-            voluptas blanditiis tempora? Cupiditate, autem. Nam laudantium
-            assumenda in aut dolorem reprehenderit hic soluta. Pariatur id
-            voluptatem voluptatum dolores qui perspiciatis!
+            Hít đất hay còn được gọi là chống đẩy, nó có tên tiếng Anh là Push
+            Up và đây là một bài tập thể dục thể hình rất cơ bản, được nhiều
+            người áp dụng tập luyện. Theo các HLV thể hình, hít đất là một bài
+            tập dạng Compound, tác động lên nhóm cơ chính là ngực và các nhóm cơ
+            phụ gồm cơ vai, cơ tay sau, cơ tay trước. Luyện tập hít đất đúng
+          </Text>
+          <Text
+            style={{
+              fontSize: 19,
+              fontWeight: 700,
+              marginBottom: 6,
+            }}
+          >
+            Chức năng
+          </Text>
+          <Text
+            style={{
+              fontSize: 17,
+              color: "#C4C4C4",
+            }}
+          >
+            Hít đất hay còn được gọi là chống đẩy, nó có tên tiếng Anh là Push
+            Up và đây là một bài tập thể dục thể hình rất cơ bản, được nhiều
+            người áp dụng tập luyện. Theo các HLV thể hình, hít đất là một bài
+            tập dạng Compound, tác động lên nhóm cơ chính là ngực và các nhóm cơ
+            phụ gồm cơ vai, cơ tay sau, cơ tay trước. Luyện tập hít đất đúng
+            cách và thường xuyên không chỉ giúp rèn luyện sức khỏe mà nó còn
+            giúp các nhóm cơ phát triển to, vạm vỡ hơn và săn chắc tự nhiên. Tập
+            hít đất sẽ giúp nam giới sớm sở hữu cho mình bộ ngực có kích thước
+            to rộng, săn chắc và giúp nữ giới tăng kích thước vòng 1 của mình
+            lên nhanh chóng. Thực tế, khi áp dụng bài tập này thì bạn có thể tập
+            tay không hoặc sử dụng dụng cụ hít đất và nó phù hợp áp dụng cho mọi
+            đối tượng, từ nam đến nữ, từ người trẻ đến người già,...
           </Text>
         </View>
         <View

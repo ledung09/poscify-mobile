@@ -22,7 +22,7 @@ export default function AnalyzeResult() {
     setLoading(true);
     const timeoutId = setTimeout(() => {
       setLoading(false);
-    }, 1000);
+    }, 3000);
   }, []);
 
   React.useEffect(() => {
@@ -95,8 +95,8 @@ export default function AnalyzeResult() {
               }}
             >
               <View style={styles.chartBox}>
-                <Text style={styles.chartBoxTitle}>Cong lưng</Text>
-                <PercentCircle percent={70} />
+                <Text style={styles.chartBoxTitle}>Mắt sai vị trí</Text>
+                <PercentCircle percent={50} />
               </View>
               <View style={styles.chartBox}>
                 <Text style={styles.chartBoxTitle}>Cong cột sống</Text>

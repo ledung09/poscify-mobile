@@ -32,7 +32,7 @@ export default function AnalyzeInput() {
             navigate("AnalyzeResult", {});
           }}
           iconName="cloud-upload"
-          text="Đăng tải video của bạn"
+          text="Phân tích video"
         />
       </View>
     </View>
