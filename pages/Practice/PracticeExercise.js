@@ -196,7 +196,7 @@ export default function PracticeExercise() {
           if (inExercise) setInExercise(null);
           else
             setInExercise({
-              id: 0,
+              id: id,
               name: "Hít đất",
               startTime: new Date(),
             });

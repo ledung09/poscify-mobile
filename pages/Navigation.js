@@ -20,12 +20,12 @@ import InExercise from "../components/page/InExercise";
 const Tab = createBottomTabNavigator();
 
 const navData = [
-  {
-    name: "OutterLogin",
-    headerText: "Outter",
-    iconName: "home",
-    component: OutterNonLogin,
-  },
+  // {
+  //   name: "OutterLogin",
+  //   headerText: "Outter",
+  //   iconName: "home",
+  //   component: OutterNonLogin,
+  // },
   {
     name: "Home",
     headerText: "Trang chủ",
@@ -44,12 +44,12 @@ const navData = [
     iconName: "layers",
     component: PracticeStack,
   },
-  {
-    name: "Statistic",
-    headerText: "Thống kê",
-    iconName: "stats-chart",
-    component: StatsStack,
-  },
+  // {
+  //   name: "Statistic",
+  //   headerText: "Thống kê",
+  //   iconName: "stats-chart",
+  //   component: StatsStack,
+  // },
   {
     name: "Setting",
     headerText: "Tài khoản",
@@ -59,8 +59,6 @@ const navData = [
 ];
 
 export default function Navigation() {
-  
-
   return (
     <View style={{ width: "100%", height: "100%" }}>
       <NavigationContainer>

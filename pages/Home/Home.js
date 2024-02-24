@@ -21,27 +21,16 @@ import {
   VictoryLine,
 } from "victory-native";
 import InExercise from "../../components/page/InExercise";
+import { Icon } from "react-native-paper";
 
 const pageComponents = [
   {
-    id: -3,
-    component: TimePractice,
-  },
-  {
-    id: -2,
-    component: TopStudent,
-  },
-  {
-    id: -1,
-    component: TeacherStats,
-  },
-  {
     id: 0,
-    component: ChildInfo,
+    component: SeatPostureAnalyze,
   },
   {
     id: 1,
-    component: SeatPostureAnalyze,
+    component: ChildInfo,
   },
   {
     id: 2,
@@ -49,7 +38,7 @@ const pageComponents = [
   },
   {
     id: 3,
-    component: TimePractice,
+    component: TeacherStats,
   },
 ];
 
@@ -72,24 +61,30 @@ export default function Home() {
 }
 
 function ProfileSecion() {
-  // const { account, setAccount } = useAccount();
-  const account = {
-    name: "1",
-    email: "1",
-    image: "https://cdn-icons-png.flaticon.com/256/6028/6028690.png",
-    role: "!23",
-  };
+  const { account, setAccount } = useAccount();
 
   return (
     <View style={{}}>
       <View style={styles.profileSection}>
         <View style={styles.userInfo}>
-          <Image
-            source={{
-              uri: account.image,
+          <View
+            style={{
+              width: 68,
+              height: 68,
+              borderRadius: "50%",
+              backgroundColor: "white",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
-            style={styles.profileImage}
-          />
+          >
+            <Image
+              source={{
+                uri: account.image,
+              }}
+              style={styles.profileImage}
+            />
+          </View>
           <View style={styles.profileTextSection}>
             <Text style={styles.profileText}>Xin chào {account.name},</Text>
             <Text style={[styles.profileText, { fontSize: 18 }]}>
@@ -116,12 +111,22 @@ function ProfileSecion() {
   );
 }
 
+const postureInfo = [
+  { id: 0, name: "Mắt", percent: 40, color: "low" },
+  { id: 1, name: "Cổ", percent: 85, color: "high" },
+  { id: 2, name: "Lưng", percent: 60, color: "medium" },
+];
+
 function SeatPostureAnalyze() {
   return (
     <View style={styles.section}>
       <Text style={styles.sectionHeader}>Phân tích dáng ngồi của bé</Text>
       <View style={{ display: "flex", flexDirection: "row", gap: "22px" }}>
-        <Ionicons name="sad-outline" size={75} />
+        <Ionicons
+          name="sad-outline"
+          size={75}
+          // color={settings.color.classDiagram.high}
+        />
         <View
           style={{
             flex: 1,
@@ -130,74 +135,67 @@ function SeatPostureAnalyze() {
             paddingVertical: 8,
           }}
         >
-          <View
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              gap: 20,
-              alignItems: "center",
-              marginBottom: 1,
+          <FlatList
+            data={postureInfo}
+            renderItem={({ item }) => {
+              return (
+                <View
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: 20,
+                    alignItems: "center",
+                    marginBottom: 1,
+                  }}
+                >
+                  <ProgressBar value={item.percent} color={item.color} />
+                  <Text
+                    style={{
+                      fontSize: 15,
+                      fontWeight: 500,
+                      marginBottom: 2,
+                      width: 35,
+                    }}
+                  >
+                    {item.name}
+                  </Text>
+                </View>
+              );
             }}
-          >
-            <ProgressBar value={50} color={"low"} />
-            <Text
-              style={{
-                fontSize: 15,
-                fontWeight: 500,
-                marginBottom: 2,
-                width: 35,
-              }}
-            >
-              Eye
-            </Text>
-          </View>
-          <View
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              gap: 20,
-              alignItems: "center",
-              marginBottom: 1,
-            }}
-          >
-            <ProgressBar value={50} color={"low"} />
-            <Text
-              style={{
-                fontSize: 15,
-                fontWeight: 500,
-                marginBottom: 2,
-                width: 35,
-              }}
-            >
-              Neck
-            </Text>
-          </View>
-          <View
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              gap: 20,
-              alignItems: "center",
-              marginBottom: 1,
-            }}
-          >
-            <ProgressBar value={50} color={"low"} />
-            <Text
-              style={{
-                fontSize: 15,
-                fontWeight: 500,
-                marginBottom: 2,
-                width: 35,
-              }}
-            >
-              Back
-            </Text>
-          </View>
+            keyExtractor={(item, idx) => item.id}
+          />
         </View>
       </View>
     </View>
   );
 }
+
+const childInfo = [
+  {
+    id: 1,
+    icon: "body-outline",
+    text1: "Chiều cao bé",
+    text2: "140kg",
+  },
+  {
+    id: 2,
+    icon: "paw-outline",
+    text1: "Cân nặng bé",
+    text2: "50kg",
+  },
+  {
+    id: 3,
+    icon: "library-outline",
+    text1: "Chiều cao bàn học",
+    text2: "100cm",
+  },
+  {
+    id: 4,
+    icon: "cube-outline",
+    text1: "Chiều cao ghế",
+    text2: "50cm",
+  },
+];
 
 function ChildInfo() {
   return (
@@ -208,57 +206,36 @@ function ChildInfo() {
           flexDirection: "row",
           alignItems: "center",
           gap: 12,
-          marginBottom: 15,
+          marginBottom: 13,
         }}
       >
         <Text style={{ fontSize: 19, fontWeight: 700 }}>Thông tin của bé</Text>
         <Ionicons style={{ marginTop: 2 }} name="create-outline" size={18} />
       </View>
       <View style={{ display: "flex", flexDirection: "column" }}>
-        <View
-          style={{
-            marginBottom: 10,
-            display: "flex",
-            alignItems: "center",
-            flexDirection: "row",
-            gap: 10,
+        <FlatList
+          data={childInfo}
+          renderItem={({ item }) => {
+            return (
+              <View
+                style={{
+                  marginBottom: 10,
+                  display: "flex",
+                  alignItems: "center",
+                  flexDirection: "row",
+                  gap: 10,
+                }}
+              >
+                <Ionicons name={item.icon} size={18} />
+                <Text style={{ fontSize: 17 }}>
+                  {item.text1}:{" "}
+                  <Text style={{ fontStyle: "italic" }}>{item.text2}</Text>
+                </Text>
+              </View>
+            );
           }}
-        >
-          <Ionicons name="body-outline" size={18} />
-          <Text style={{ fontSize: 17 }}>
-            Chiều cao bé: <Text style={{ fontStyle: "italic" }}>140cm</Text>
-          </Text>
-        </View>
-
-        <View
-          style={{
-            marginBottom: 10,
-            display: "flex",
-            alignItems: "center",
-            flexDirection: "row",
-            gap: 10,
-          }}
-        >
-          <Ionicons name="paw-outline" size={18} />
-          <Text style={{ fontSize: 17 }}>
-            Cân nặng bé: <Text style={{ fontStyle: "italic" }}>50kg</Text>
-          </Text>
-        </View>
-        <View
-          style={{
-            marginBottom: 10,
-            display: "flex",
-            alignItems: "center",
-            flexDirection: "row",
-            gap: 10,
-          }}
-        >
-          <Ionicons name="library-outline" size={18} />
-          <Text style={{ fontSize: 17 }}>
-            Chiều cao bàn học:{" "}
-            <Text style={{ fontStyle: "italic" }}>100cm</Text>
-          </Text>
-        </View>
+          keyExtractor={(item, idx) => item.id}
+        />
       </View>
     </View>
   );
@@ -274,7 +251,8 @@ function ActivitySuggestion() {
         paddingHorizontal: 25,
         paddingVertical: 15,
         borderRadius: 10,
-        marginBottom: 10,
+        marginTop: 10,
+        marginBottom: 20,
       }}
     >
       <View style={{ flex: 1 }}>
@@ -359,10 +337,54 @@ function TimePractice() {
               <View
                 style={{
                   width,
+                  paddingHorizontal: 20,
+                  // borderRadius: 30,
+                  // boxShadow:
+                  //   "rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px",
                 }}
               >
-                <Text>Thứ bảy. 20/11/2023</Text>
-                <Text>{index}</Text>
+                <View
+                  style={{
+                    border: "2px solid #c8c8c8",
+                    padding: 30,
+                    borderRadius: 15,
+                  }}
+                >
+                  <View
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      gap: 15,
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Icon source="calendar-blank-outline" size={28} />
+                    <Text
+                      style={{
+                        fontWeight: 300,
+                        fontSize: 100,
+                        marginTop: "-35px",
+                      }}
+                    >
+                      20
+                    </Text>
+                    <View
+                      style={{ display: "flex", justifyContent: "flex-end" }}
+                    >
+                      <Text
+                        style={{
+                          fontWeight: 300,
+                          fontSize: 40,
+                          marginBottom: "15px",
+                        }}
+                      >
+                        Nov
+                      </Text>
+                    </View>
+                  </View>
+                  <Text>Thứ bảy. 20/11/2023</Text>
+                  <Text>{index}</Text>
+                </View>
               </View>
             );
           }}
@@ -539,7 +561,7 @@ const styles = StyleSheet.create({
   profileText: {
     fontSize: "21px",
     fontWeight: 600,
-    marginBottom: "4px",
+    marginBottom: "5px",
     color: "white",
   },
   inputWrapper: {
@@ -567,6 +589,7 @@ const styles = StyleSheet.create({
   section: {
     paddingVertical: "10px",
     paddingHorizontal: "20px",
+    marginBottom: 10,
   },
   sectionHeader: {
     fontSize: 19,

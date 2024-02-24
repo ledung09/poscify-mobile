@@ -4,8 +4,10 @@ import { settings } from "../../setting/setting";
 import { Header } from "../../components/page/Header";
 import { useAccount } from "../../components/hooks/useAccount";
 import { LinearGradient } from "expo-linear-gradient";
+import { GoogleAuthProvider, getAuth, signInWithRedirect } from "firebase/auth";
 
-export default function OutterNonLogin() {
+export default function OutterNonLogin({ loginFail }) {
+  const auth = getAuth();
   return (
     <View style={styles.container}>
       <View
@@ -75,6 +77,10 @@ export default function OutterNonLogin() {
         </Text>
 
         <Pressable
+          onPress={async () => {
+            const provider = new GoogleAuthProvider();
+            signInWithRedirect(auth, provider);
+          }}
           style={{
             display: "flex",
             flexDirection: "row",
@@ -102,11 +108,19 @@ export default function OutterNonLogin() {
             Đăng nhập bằng Google
           </Text>
         </Pressable>
-        <Text
-          style={{ fontSize: 16, color: "red", fontWeight: 500, marginTop: 15 }}
-        >
-          *Tài khoản không tồn tại trong hệ thống
-        </Text>
+
+        {loginFail && (
+          <Text
+            style={{
+              fontSize: 16,
+              color: "red",
+              fontWeight: 500,
+              marginTop: 15,
+            }}
+          >
+            *Tài khoản không tồn tại trong hệ thống
+          </Text>
+        )}
       </View>
       <LinearGradient
         // Button Linear Gradient

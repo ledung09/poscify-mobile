@@ -75,15 +75,16 @@ export default function AnalyzeResult() {
             }}
             style={{
               marginHorizontal: "auto",
-              width: "80%",
-              height: "270px",
+              width: "90%",
+              height: "300px",
               objectFit: "contain",
-              marginVertical: 20,
+              marginTop: 20,
+              marginBottom: 30,
             }}
           />
 
           <View style={{ paddingHorizontal: 15 }}>
-            <Text style={{ fontSize: 19, fontWeight: 700, marginBottom: 18 }}>
+            <Text style={{ fontSize: 19, fontWeight: 700, marginBottom: 23 }}>
               Kết quả phân tích
             </Text>
             <View
