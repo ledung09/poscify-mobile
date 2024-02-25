@@ -4,8 +4,6 @@ import { Button } from "../../components/ui/Button";
 import { useNavigation } from "@react-navigation/native";
 import { Header } from "../../components/page/Header";
 import InExercise from "../../components/page/InExercise";
-import * as ImagePicker from "expo-image-picker";
-import { Video, ResizeMode } from "expo-av";
 import React from "react";
 
 export default function AnalyzeInputStop() {

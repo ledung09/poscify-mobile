@@ -4,7 +4,6 @@ import { Button } from "../../components/ui/Button";
 import { useNavigation } from "@react-navigation/native";
 import { Header } from "../../components/page/Header";
 import InExercise from "../../components/page/InExercise";
-import * as ImagePicker from "expo-image-picker";
 
 export default function AnalyzeInput() {
   const { navigate } = useNavigation();
