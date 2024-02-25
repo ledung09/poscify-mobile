@@ -18,6 +18,7 @@ import {
   VictoryAxis,
   VictoryBar,
   VictoryChart,
+  VictoryLabel,
   VictoryLine,
 } from "victory-native";
 import InExercise from "../../components/page/InExercise";
@@ -412,26 +413,28 @@ function TeacherStats() {
         </Text>
         <VictoryChart
           minDomain={{ y: 0 }}
-          maxDomain={{ y: 100 }}
+          maxDomain={{ y: 30 }}
           domainPadding={{ x: 15 }}
         >
           <VictoryBar
-            title="this is"
             cornerRadius={{ top: ({ datum }) => 10 }}
             style={{
               data: {
                 fill: settings.color.primary,
                 width: 20,
               },
+              labels: {
+                rotate: "45deg",
+              },
             }}
             x={(datum) => datum.xLabel}
             data={[
-              { x: 1, y: 20, y0: 0, xLabel: "Tiết 1" },
-              { x: 2, y: 50, y0: 0, xLabel: "Tiết 2" },
-              { x: 3, y: 30, y0: 0, xLabel: "Tiết 3" },
-              { x: 4, y: 80, y0: 0, xLabel: "Tiết 4" },
-              { x: 5, y: 60, y0: 0, xLabel: "Tiết 5" },
-              { x: 6, y: 30, y0: 0, xLabel: "Tiết 6" },
+              { x: 1, y: 20, y0: 0, xLabel: "Thứ hai" },
+              { x: 2, y: 15, y0: 0, xLabel: "Thứ ba" },
+              { x: 3, y: 18, y0: 0, xLabel: "Thứ tư" },
+              { x: 4, y: 25, y0: 0, xLabel: "Thứ năm" },
+              { x: 5, y: 10, y0: 0, xLabel: "Thứ sáu" },
+              // { x: 6, y: 14, y0: 0, xLabel: "Chủ nhật" },
             ]}
           />
         </VictoryChart>

@@ -79,7 +79,7 @@ export default function AnalyzeResult() {
               height: "300px",
               objectFit: "contain",
               marginTop: 20,
-              marginBottom: 30,
+              marginBottom: 50,
             }}
           />
 
