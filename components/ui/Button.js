@@ -15,9 +15,9 @@ export function Button({ iconName, text, ...props }) {
       {iconName && (
         <Ionicons
           name={iconName}
-          size={18}
+          size={20}
           color="white"
-          style={{ height: 15 }}
+          style={{ height: 15, marginBottom: 5 }}
         />
       )}
       <Text style={styles.text}>{text}</Text>

@@ -70,16 +70,14 @@ export default function AnalyzeResult() {
       ) : (
         <>
           <Image
-            source={{
-              uri: "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2020/07/13/hunch-fs-preds.jpg",
-            }}
+            source={require("../../assets/image/Analyze/analyze.jpg")}
             style={{
               marginHorizontal: "auto",
               width: "90%",
-              height: "300px",
+              height: "420px",
               objectFit: "contain",
               marginTop: 20,
-              marginBottom: 50,
+              marginBottom: 40,
             }}
           />
 

@@ -4,6 +4,7 @@ import { Button } from "../../components/ui/Button";
 import { useNavigation } from "@react-navigation/native";
 import { Header } from "../../components/page/Header";
 import InExercise from "../../components/page/InExercise";
+import * as ImagePicker from "expo-image-picker";
 
 export default function AnalyzeInput() {
   const { navigate } = useNavigation();
@@ -28,11 +29,14 @@ export default function AnalyzeInput() {
           Hãy để chúng tôi phân tích dáng ngồi của con bạn!
         </Text>
         <Button
-          onPress={() => {
-            navigate("AnalyzeResult", {});
+          // onPress={() => {
+          //   navigate("AnalyzeResult", {});
+          // }}
+          onPress={async () => {
+            navigate("AnalyzeInputStop");
           }}
-          iconName="cloud-upload"
-          text="Phân tích video"
+          iconName="videocam-outline"
+          text="Bắt đầu ghi video"
         />
       </View>
     </View>
